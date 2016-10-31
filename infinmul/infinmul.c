@@ -5,10 +5,10 @@
 ** Login   <arthur@epitech.net>
 **
 ** Started on  Fri Oct 28 15:24:48 2016 Arthur Knoepflin
-** Last update Mon Oct 31 12:33:10 2016 Arthur Knoepflin
+** Last update Mon Oct 31 14:33:34 2016 Arthur Knoepflin
 */
 #include <stdlib.h>
-#include "mul_inf.h"
+#include "bistro.h"
 #include "my.h"
 
 int	stl(char *str)
@@ -16,59 +16,64 @@ int	stl(char *str)
   return (my_strlen(str));
 }
 
-t_nbr	clear_str(t_nbr *str)
+void	clear_str(t_ci *str)
 {
-  t_nbr	ret;
+  t_ci	ret;
   int	len;
   int	start;
   int	i;
 
   start = 0;
   len = 0;
-  while (str->nbr[start] == '0' && str->nbr[start + 1] != '\0')
+  while (str->n[start] == '0' && str->n[start + 1] != '\0')
     start += 1;
-  while (str->nbr[start + len])
+  while (str->n[start + len])
     len += 1;
-  ret.nbr = malloc(sizeof(char) * (len + 1));
-  ret.nbr[len] = '\0';
+  if ((ret.n = malloc(sizeof(char) * (len + 1))) == NULL)
+    {
+      ret.n = NULL;
+      return (ret);
+    }
+  ret.n[len] = '\0';
   i = 0;
   while (i < len)
     {
-      ret.nbr[i] = str->nbr[start + i];
+      ret.n[i] = str->n[start + i];
       i += 1;
     }
-  return (ret);
+  str->n = ret.n;
 }
 
-void	calc_neg(t_nbr *nb1, t_nbr *nb2, t_nbr *ret)
+void	calc_neg(t_ci *nb1, t_ci *nb2, t_ci *ret)
 {
-  if (nb1->neg == 1 || nb2->neg == 1)
-    ret->neg = 1;
-  if (nb1->neg == 1 && nb2->neg == 1)
-    ret->neg = 0;
+  if (nb1->s == 1 || nb2->s == 1)
+    ret->s = 1;
+  if ((nb1->s == 1 && nb2->s == 1) ||
+      (nb1->s == 0 && nb2->s == 0))
+    ret->s = 0;
 }
 
-t_nbr	mul_inf(t_nbr *nb1, t_nbr *nb2)
+char	*infinmul_calc(t_ci *nb1, t_ci *nb2)
 {
   int	i;
   int	j;
   int	tmp;
-  t_nbr	ret;
+  char	*ret;
 
-  i = my_strlen(nb1->nbr) - 1;
-  j = my_strlen(nb2->nbr) - 1;
-  calc_neg(nb1, nb2, &ret);
-  ret.nbr = malloc(sizeof(char) * (stl(nb1->nbr) + stl(nb2->nbr) + 1));
-  my_memset(ret.nbr, '0', stl(nb1->nbr) + stl(nb2->nbr));
-  ret.nbr[stl(nb1->nbr) + stl(nb2->nbr)] = '\0';
+  i = my_strlen(nb1->n) - 1;
+  j = my_strlen(nb2->n) - 1;
+  if ((ret = malloc(sizeof(char) * (nb1->l + nb2->l + 1))) == NULL)
+    return (ret);
+  my_memset(ret, '0', stl(nb1->n) + stl(nb2->n));
+  ret[stl(nb1->n) + stl(nb2->n)] = '\0';
   while (i >= 0)
     {
-      j = my_strlen(nb2->nbr) - 1;
+      j = my_strlen(nb2->n) - 1;
       while (j >= 0)
 	{
-	  tmp = (nb1->nbr[i] - '0') * (nb2->nbr[j] - '0');
-	  ret.nbr[i + j] += ((ret.nbr[i + j + 1] + tmp - '0') / 10);
-	  ret.nbr[i + j + 1] = ((ret.nbr[i + j + 1] + tmp - '0') % 10) + '0';
+	  tmp = (nb1->n[i] - '0') * (nb2->n[j] - '0');
+	  ret[i + j] += ((ret[i + j + 1] + tmp - '0') / 10);
+	  ret[i + j + 1] = ((ret[i + j + 1] + tmp - '0') % 10) + '0';
 	  j -= 1;
 	}
       i -= 1;
@@ -76,12 +81,13 @@ t_nbr	mul_inf(t_nbr *nb1, t_nbr *nb2)
   return (ret);
 }
 
-int	get_nl(char *nb)
+t_ci	infinmul(t_ci *nb1, t_ci *nb2)
 {
-  int	i;
+  t_ci	ret;
 
-  i = 0;
-  while (nb[i] == '0' && nb[i + 1] != '\0')
-    i += 1;
-  return (i);
+  ret.n = infinmul_calc(nb1, nb2);
+  calc_neg(nb1, nb2, &ret);
+  ret.l = my_strlen(ret.n);
+  clear_str(&ret);
+  return (ret);
 }

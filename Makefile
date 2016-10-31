@@ -5,11 +5,12 @@
 ## Login   <cedric@epitech.net>
 ## 
 ## Started on  Sat Oct 22 10:37:32 2016 Cédric Thomas
-## Last update Mon Oct 31 13:20:52 2016 Arthur Knoepflin
+## Last update Mon Oct 31 13:28:08 2016 Arthur Knoepflin
 ##
 
 SRC	=	infinadd/infinadd.c	\
 		infinsub/infinsub.c	\
+		infinmul/infinmul.c	\
 		main.c			\
 		module_bistro.c		\
 		convert.c
