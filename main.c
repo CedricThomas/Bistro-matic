@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Sat Oct 22 10:31:05 2016 Cédric Thomas
-** Last update Mon Oct 31 11:21:24 2016 Cédric Thomas
+** Last update Mon Oct 31 13:07:21 2016 Cédric Thomas
 */
 
 #include "my.h"
@@ -22,9 +22,9 @@ int	main(int ac, char **av)
   char_to_stru(&nb1, av[1]);
   char_to_stru(&nb2, av[3]);
   if (my_strcmp("+", av[2]) == 0)
-    infinadd(nb1, nb2, &nb);
+    nb = infinadd(nb1, nb2);
   else if (my_strcmp("-", av[2]) == 0)
-    infinsub(nb1, nb2, &nb);
+    nb = infinsub(nb1, nb2);
   else
     return (0);
   if (nb.s == 1)
