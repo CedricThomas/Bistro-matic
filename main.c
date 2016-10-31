@@ -5,9 +5,10 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Sat Oct 22 10:31:05 2016 Cédric Thomas
-** Last update Mon Oct 31 16:02:12 2016 Cédric Thomas
+** Last update Mon Oct 31 16:18:16 2016 Cédric Thomas
 */
 
+#include <stdlib.h>
 #include "my.h"
 #include "bistro.h"
 
@@ -25,6 +26,8 @@ int	main(int ac, char **av)
     nb = infinadd(nb1, nb2);
   else if (my_strcmp("-", av[2]) == 0)
     nb = infinsub(nb1, nb2);
+  else if (my_strcmp("*", av[2]) == 0)
+    nb = infinmul(&nb1, &nb2);
   else
     return (0);
   if (nb.s == 1)

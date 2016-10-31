@@ -5,13 +5,14 @@
 ## Login   <cedric@epitech.net>
 ## 
 ## Started on  Sat Oct 22 10:37:32 2016 Cédric Thomas
-## Last update Mon Oct 31 10:39:09 2016 Cédric Thomas
+## Last update Mon Oct 31 13:28:08 2016 Arthur Knoepflin
 ##
 
-SRC	=	infinadd/*.c	\
-		infinsub/*.c	\
-		main.c		\
-		module_bistro.c	\
+SRC	=	infinadd/infinadd.c	\
+		infinsub/infinsub.c	\
+		infinmul/infinmul.c	\
+		main.c			\
+		module_bistro.c		\
 		convert.c
 
 OBJ	=	$(SRC:.c=.o)
