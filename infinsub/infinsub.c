@@ -5,15 +5,16 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Mon Oct 24 09:00:08 2016 Cédric Thomas
-** Last update Mon Oct 31 16:04:18 2016 Cédric Thomas
+** Last update Mon Oct 31 16:56:34 2016 Cédric Thomas
 */
 
 #include <stdlib.h>
 #include "my.h"
 #include "bistro.h"
 
-static void	check_sign(t_ci *ci1, t_ci *ci2, t_ci *res)
+static void	check_sign(t_ci *ci1, t_ci *ci2, t_ci *res, int *bool)
 {
+  *bool = 1;
   if (ci2->s == 1)
     {
       ci2->s = 0;
@@ -57,12 +58,14 @@ t_ci	infinsub(t_ci ci1, t_ci ci2)
 {
   char  *result;
   t_ci	res;
+  int	bool;
 
   result = NULL;
+  bool = 0;
   if (ci1.s != ci2.s || ci1.s == ci2.s && ci1.s == 1)
-    check_sign(&ci1, &ci2, &res);
+    check_sign(&ci1, &ci2, &res, &bool);
   else if (ci1.l == ci2.l && my_strcmp(ci1.n, ci2.n) == 0)
-    char_to_stru(&res, "0");
+    char_to_stru(&res, my_strdup("0"));
   else if (ci1.l == ci2.l && my_strcmp(ci1.n, ci2.n) > 0 || ci1.l > ci2.l)
     {
       result = sub_mod(&ci1, &ci2, 0);
@@ -73,7 +76,10 @@ t_ci	infinsub(t_ci ci1, t_ci ci2)
       result = sub_mod(&ci2, &ci1, 1);
       char_to_stru(&res, result);
     }
-  free(ci1.n);
-  free(ci2.n);
+  if (bool == 0)
+    {
+      free(ci1.n);
+      free(ci2.n);
+    }
   return (res);
 }
