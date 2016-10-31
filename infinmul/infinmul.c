@@ -5,7 +5,7 @@
 ** Login   <arthur@epitech.net>
 **
 ** Started on  Fri Oct 28 15:24:48 2016 Arthur Knoepflin
-** Last update Mon Oct 31 14:33:34 2016 Arthur Knoepflin
+** Last update Mon Oct 31 15:16:55 2016 Arthur Knoepflin
 */
 #include <stdlib.h>
 #include "bistro.h"
@@ -18,7 +18,7 @@ int	stl(char *str)
 
 void	clear_str(t_ci *str)
 {
-  t_ci	ret;
+  char	*ret;
   int	len;
   int	start;
   int	i;
@@ -29,19 +29,19 @@ void	clear_str(t_ci *str)
     start += 1;
   while (str->n[start + len])
     len += 1;
-  if ((ret.n = malloc(sizeof(char) * (len + 1))) == NULL)
+  if ((ret = malloc(sizeof(char) * (len + 1))) == NULL)
     {
-      ret.n = NULL;
+      ret = NULL;
       return (ret);
     }
-  ret.n[len] = '\0';
+  ret[len] = '\0';
   i = 0;
   while (i < len)
     {
-      ret.n[i] = str->n[start + i];
+      ret[i] = str->n[start + i];
       i += 1;
     }
-  str->n = ret.n;
+  str->n = ret;
 }
 
 void	calc_neg(t_ci *nb1, t_ci *nb2, t_ci *ret)
@@ -84,10 +84,14 @@ char	*infinmul_calc(t_ci *nb1, t_ci *nb2)
 t_ci	infinmul(t_ci *nb1, t_ci *nb2)
 {
   t_ci	ret;
+  char	*calc;
 
-  ret.n = infinmul_calc(nb1, nb2);
+  calc = infinmul_calc(nb1, nb2);
+  ret.n = calc;
   calc_neg(nb1, nb2, &ret);
   ret.l = my_strlen(ret.n);
   clear_str(&ret);
+  //ret.n = calc;
+  free(calc);
   return (ret);
 }
