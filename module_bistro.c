@@ -1,11 +1,11 @@
 /*
 ** module_bistro.c for bistro in /home/cedric/delivery/CPool_infinadd
-** 
+**
 ** Made by Cédric Thomas
 ** Login   <cedric@epitech.net>
-** 
+**
 ** Started on  Mon Oct 24 18:25:52 2016 Cédric Thomas
-** Last update Mon Oct 31 11:23:47 2016 Cédric Thomas
+** Last update Mon Oct 31 13:21:32 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
@@ -30,7 +30,7 @@ char	*add_retenu(int retenu, char *nb, int sign, char mod)
 
   if (mod == '-')
     nb = nb + get_nl(nb);
-  if (sign != 0 && my_strcmp("0",nb) == 0)
+  if (sign != 0 && my_strcmp("0", nb) == 0)
     sign = 0;
   i = sign + retenu;
   sum = retenu + sign + my_strlen(nb);
