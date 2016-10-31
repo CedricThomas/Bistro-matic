@@ -5,12 +5,27 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Mon Oct 24 09:00:08 2016 Cédric Thomas
-** Last update Mon Oct 31 13:48:24 2016 Cédric Thomas
+** Last update Mon Oct 31 16:04:35 2016 Cédric Thomas
 */
 
 #include <stdlib.h>
 #include "my.h"
 #include "bistro.h"
+
+static void     check_sign(t_ci *ci1, t_ci *ci2, t_ci *res)
+{
+  if (ci1->s == 1)
+    {
+      ci1->s = 0;
+      *res = infinsub(*ci2, *ci1);
+    }
+  else
+    {
+      ci2->s = 0;
+      *res = infinsub(*ci1, *ci2);  
+    }
+}
+
 
 static char	*add_mod(t_ci *a, t_ci *b, int sign)
 {
@@ -21,7 +36,6 @@ static char	*add_mod(t_ci *a, t_ci *b, int sign)
 
   i = a->l - 1;
   retenu = 0;
-  printf("sub : %s, %s, %d\n",a->n,b->n,a->s);
   while (i >= 0)
     {
       o = b->l - a->l + i;
@@ -39,6 +53,7 @@ t_ci	infinadd(t_ci ci1, t_ci ci2)
   char	*result;
   t_ci	res;
 
+  result = NULL;
   if (ci1.l >= ci2.l && ci1.s == ci2.s)
     {
       result = add_mod(&ci1, &ci2, ci1.s);
@@ -50,15 +65,8 @@ t_ci	infinadd(t_ci ci1, t_ci ci2)
       char_to_stru(&res, result);
     }
   else
-    {
-      if (ci1.s == 1)
-	{
-	  res = infinsub(ci2, ci1);
-	}
-      else
-	{
-	  res = infinsub(ci1, ci2);  
-	}
-    }
+    check_sign(&ci1, &ci2, &res);
+  free(ci1.n);
+  free(ci2.n);
   return (res);
 }
