@@ -5,6 +5,7 @@
 ## Login   <cedric@epitech.net>
 ## 
 ## Started on  Sat Oct 22 10:37:32 2016 Cédric Thomas
+<<<<<<< HEAD
 ## Last update Wed Nov  2 00:15:55 2016 Arthur Knoepflin
 ##
 
@@ -26,6 +27,19 @@ SRC	=	infinadd/infinadd.c		\
 		main.c				\
 		convert.c			\
 		module_bistro.c
+=======
+## Last update Tue Nov  1 09:22:15 2016 Cédric Thomas
+##
+
+SRC	=	infinadd/infinadd.c	\
+		infinsub/infinsub.c	\
+		infinmul/infinmul.c	\
+		infindiv/infindiv.c	\
+		main.c			\
+		module_bistro.c		\
+		convert.c		\
+		int_to_char.c
+>>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0
 
 OBJ	=	$(SRC:.c=.o)
 

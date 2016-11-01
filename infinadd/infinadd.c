@@ -5,15 +5,20 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Mon Oct 24 09:00:08 2016 Cédric Thomas
+<<<<<<< HEAD
 ** Last update Tue Nov  1 22:31:52 2016 Arthur Knoepflin
+=======
+** Last update Mon Oct 31 16:56:09 2016 Cédric Thomas
+>>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0
 */
 
 #include <stdlib.h>
 #include "my.h"
 #include "bistro.h"
 
-static void     check_sign(t_ci *ci1, t_ci *ci2, t_ci *res)
+static void     check_sign(t_ci *ci1, t_ci *ci2, t_ci *res, int *bool)
 {
+  *bool = 1;
   if (ci1->s == 1)
     {
       ci1->s = 0;
@@ -52,8 +57,10 @@ t_ci	infinadd(t_ci ci1, t_ci ci2)
 {
   char	*result;
   t_ci	res;
+  int	bool;
 
   result = NULL;
+  bool = 0;
   if (ci1.l >= ci2.l && ci1.s == ci2.s)
     {
       result = add_mod(&ci1, &ci2, ci1.s);
@@ -65,8 +72,11 @@ t_ci	infinadd(t_ci ci1, t_ci ci2)
       char_to_stru(&res, result);
     }
   else
-    check_sign(&ci1, &ci2, &res);
-  free(ci1.n);
-  free(ci2.n);
+    check_sign(&ci1, &ci2, &res, &bool);
+  if (bool == 0)
+    {
+      free(ci1.n);
+      free(ci2.n);
+    }
   return (res);
 }

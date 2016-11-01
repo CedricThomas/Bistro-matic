@@ -5,11 +5,16 @@
 ** Login   <arthur@epitech.net>
 **
 ** Started on  Tue Oct 25 22:43:58 2016 Arthur Knoepflin
+<<<<<<< HEAD:evalexpr/do_op.c
 ** Last update Wed Nov  2 00:03:47 2016 Arthur Knoepflin
+=======
+** Last update Tue Nov  1 09:20:51 2016 Cédric Thomas
+>>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0:int_to_char.c
 */
 #include <stdlib.h>
 #include "my.h"
 #include "bistro.h"
+<<<<<<< HEAD:evalexpr/do_op.c
 
 int	get_oper(char *str)
 {
@@ -29,6 +34,8 @@ int	get_oper(char *str)
     }
   return (6);
 }
+=======
+>>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0:int_to_char.c
 
 int	size_int(int nb)
 {
@@ -50,13 +57,15 @@ char	*toc_alloc(int nb)
   char  *ret;
   if (nb < 0)
     {
-      ret = malloc(sizeof(char) * (size_int(nb) + 2));
+      if ((ret = malloc(sizeof(char) * (size_int(nb) + 2))) == NULL)
+	return (NULL);
       ret[0] = '-';
       nb *= (-1);
     }
   else
     {
-      ret = malloc(sizeof(char) * (size_int(nb) + 1));
+      if ((ret = malloc(sizeof(char) * (size_int(nb) + 1))) == NULL)
+	return (NULL);
     }
   return (ret);
 }
@@ -69,6 +78,8 @@ char	*int_toc(int nb)
   i[0] = 1;
   i[1] = size_int(nb);
   ret = toc_alloc(nb);
+  if (ret == NULL)
+    return (NULL);
   if (nb < 0)
     {
       nb *= (-1);
@@ -89,6 +100,7 @@ char	*int_toc(int nb)
     ret[0] = '0';
   return (ret);
 }
+<<<<<<< HEAD:evalexpr/do_op.c
 
 char	*do_op(char *a, char *b, char *char_oper)
 {
@@ -107,3 +119,5 @@ char	*do_op(char *a, char *b, char *char_oper)
   rst_stru = calc_op[get_oper(char_oper)](a_stru, b_stru);
   return (stru_to_char(&rst_stru));
 }
+=======
+>>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0:int_to_char.c

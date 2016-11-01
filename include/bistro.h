@@ -4,8 +4,17 @@
 ** Made by Cédric Thomas
 ** Login   <cedric@epitech.net>
 **
+<<<<<<< HEAD
 ** Started on  Wed Oct 26 14:44:54 2016 Cédric Thomas
 ** Last update Wed Nov  2 00:18:19 2016 Arthur Knoepflin
+=======
+** Started on  Mon Oct 24 10:18:20 2016 Cédric Thomas
+<<<<<<< HEAD
+** Last update Tue Nov  1 09:28:07 2016 Cédric Thomas
+=======
+** Last update Mon Oct 31 12:04:06 2016 Cebrail Aktas
+>>>>>>> 601521785ae3bf39eea882e5b6ccdf3c93d563e1
+>>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0
 */
 
 #ifndef EVAL_EXPR_H_
@@ -150,6 +159,7 @@ t_ci	mod_mod(t_ci *, t_ci *);
 t_ci	infinmod(t_ci, t_ci);
 
 int	t_ci_cmp(t_ci *nb1, t_ci *nb2);
+<<<<<<< HEAD
 
 #define	OP_OPEN_PARENT_IDX	0
 #define	OP_CLOSE_PARENT_IDX	1
@@ -159,6 +169,14 @@ int	t_ci_cmp(t_ci *nb1, t_ci *nb2);
 #define	OP_MULT_IDX		4
 #define OP_DIV_IDX		5
 #define	OP_MOD_IDX		6
+=======
+t_ci	infinadd(t_ci nb1, t_ci nb2);
+t_ci	infinsub(t_ci nb1, t_ci nb2);
+t_ci	infindiv(t_ci nb1, t_ci nb2);
+t_ci	infinmul(t_ci *, t_ci *);
+t_ci	stru_dup(t_ci *);
+t_ci	get_boost(t_ci *, t_ci *);
+>>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0
 
 #define	EXIT_USAGE		84
 #define	EXIT_BASE		84
