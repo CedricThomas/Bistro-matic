@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Sat Oct 22 10:31:05 2016 Cédric Thomas
-** Last update Mon Oct 31 16:18:16 2016 Cédric Thomas
+** Last update Tue Nov  1 09:04:14 2016 Cédric Thomas
 */
 
 #include <stdlib.h>
@@ -28,6 +28,8 @@ int	main(int ac, char **av)
     nb = infinsub(nb1, nb2);
   else if (my_strcmp("*", av[2]) == 0)
     nb = infinmul(&nb1, &nb2);
+  else if (my_strcmp("/", av[2]) == 0)
+    nb = infindiv(nb1, nb2);
   else
     return (0);
   if (nb.s == 1)
@@ -35,5 +37,7 @@ int	main(int ac, char **av)
   my_putstr(nb.n);
   my_putchar('\n');
   free(nb.n);
+  free(nb1.n);
+  free(nb2.n);
   return (0);
 }

@@ -5,12 +5,34 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Mon Oct 24 18:25:52 2016 Cédric Thomas
-** Last update Mon Oct 31 13:21:32 2016 Arthur Knoepflin
+** Last update Mon Oct 31 21:23:50 2016 Cédric Thomas
 */
 
 #include <stdlib.h>
 #include "my.h"
 #include "bistro.h"
+
+t_ci	stru_dup(t_ci *ci)
+{
+  t_ci	duped;
+
+  duped.n = my_strdup(ci->n);
+  duped.s = ci->s;
+  duped.l = ci->l;
+  return (duped);
+}
+
+int	t_ci_cmp(t_ci *ci1, t_ci *ci2)
+{
+  if (ci1->l == ci2->l && my_strcmp(ci1->n, ci2->n) == 0)
+    return (0);
+  else if (ci1->l == ci2->l && my_strcmp(ci1->n, ci2->n) < 0
+      || ci1->l < ci2->l)
+    return (-1);
+  else if (ci1->l == ci2->l && my_strcmp(ci1->n, ci2->n) > 0
+      || ci1->l > ci2->l)
+    return (1);  
+}
 
 int	get_nl(char *nb)
 {
