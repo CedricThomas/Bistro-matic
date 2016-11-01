@@ -5,14 +5,14 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Tue Oct 25 20:41:56 2016 Cédric Thomas
-** Last update Thu Oct 27 20:19:42 2016 Arthur Knoepflin
+** Last update Tue Nov  1 23:31:17 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
 #include "my.h"
-#include "eval_expr.h"
+#include "bistro.h"
 
-int	get_nb_op(char **str)
+int	get_nb_op(char **str, t_list l)
 {
   int	i;
   int	count;
@@ -21,14 +21,14 @@ int	get_nb_op(char **str)
   count = 0;
   while (str[i] != 0)
     {
-      if (my_strlen(str[i]) == 1 && is_op(str[i]))
+      if (my_strlen(str[i]) == 1 && is_op(str[i], l))
 	count += 1;
       i += 1;
     }
   return (count);
 }
 
-char	**copy(char **stack, char **cpy)
+char	**copy(char **stack, char **cpy, t_list l)
 {
   int	i;
   int	j;
@@ -40,7 +40,7 @@ char	**copy(char **stack, char **cpy)
   while (i < get_stack_size(stack))
     {
       if (bool && (i + 2) < get_stack_size(stack)
-	  && is_op(stack[i + 2]))
+	  && is_op(stack[i + 2], l))
 	{
 	  cpy[j] = do_op(stack[i], stack[i + 1], stack[i + 2]);
 	  i += 2;
@@ -86,7 +86,7 @@ char	**free_stack(char **stack)
   return (stack);
 }
 
-int	calc(char **str)
+char	*calc(char **str, t_list l)
 {
   int	i;
   int	result;
@@ -94,16 +94,14 @@ int	calc(char **str)
   char	**cpy;
 
   l_stack = get_stack_size(str);
-  while (get_nb_op(str))
+  while (get_nb_op(str, l))
     {
       l_stack -= 1;
       cpy = malloc(sizeof(char *) * (l_stack + 1));
-      cpy = copy(str, cpy);
+      cpy = copy(str, cpy, l);
       str = free_stack(str);
       str = copy_stack(str, cpy);
       cpy = free_stack(cpy);
     }
-  result = my_getnbr(str[0]);
-  free_stack(str);
-  return (result);
+  return (str[0]);
 }

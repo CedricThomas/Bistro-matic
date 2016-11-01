@@ -5,7 +5,7 @@
 ** Login   <arthur@epitech.net>
 **
 ** Started on  Fri Oct 28 15:24:48 2016 Arthur Knoepflin
-** Last update Mon Oct 31 15:16:55 2016 Arthur Knoepflin
+** Last update Tue Nov  1 23:39:34 2016 Arthur Knoepflin
 */
 #include <stdlib.h>
 #include "bistro.h"
@@ -31,8 +31,8 @@ void	clear_str(t_ci *str)
     len += 1;
   if ((ret = malloc(sizeof(char) * (len + 1))) == NULL)
     {
-      ret = NULL;
-      return (ret);
+      str->n = NULL;
+      return ;
     }
   ret[len] = '\0';
   i = 0;
@@ -64,8 +64,8 @@ char	*infinmul_calc(t_ci *nb1, t_ci *nb2)
   j = my_strlen(nb2->n) - 1;
   if ((ret = malloc(sizeof(char) * (nb1->l + nb2->l + 1))) == NULL)
     return (ret);
-  my_memset(ret, '0', stl(nb1->n) + stl(nb2->n));
-  ret[stl(nb1->n) + stl(nb2->n)] = '\0';
+  my_memset(ret, '0', nb1->l + nb2->l);
+  ret[nb1->l + nb2->l] = '\0';
   while (i >= 0)
     {
       j = my_strlen(nb2->n) - 1;
@@ -81,17 +81,16 @@ char	*infinmul_calc(t_ci *nb1, t_ci *nb2)
   return (ret);
 }
 
-t_ci	infinmul(t_ci *nb1, t_ci *nb2)
+t_ci	infinmul(t_ci nb1, t_ci nb2)
 {
   t_ci	ret;
   char	*calc;
 
-  calc = infinmul_calc(nb1, nb2);
+  calc = infinmul_calc(&nb1, &nb2);
   ret.n = calc;
-  calc_neg(nb1, nb2, &ret);
+  calc_neg(&nb1, &nb2, &ret);
   ret.l = my_strlen(ret.n);
   clear_str(&ret);
-  //ret.n = calc;
   free(calc);
   return (ret);
 }

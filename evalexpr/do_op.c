@@ -1,15 +1,15 @@
 /*
 ** do-op.c for do-op in /home/arthur/delivery/CPool_EvalExpr
-** 
+**
 ** Made by Arthur Knoepflin
 ** Login   <arthur@epitech.net>
-** 
+**
 ** Started on  Tue Oct 25 22:43:58 2016 Arthur Knoepflin
-** Last update Thu Oct 27 18:32:22 2016 Arthur Knoepflin
+** Last update Wed Nov  2 00:03:47 2016 Arthur Knoepflin
 */
 #include <stdlib.h>
 #include "my.h"
-#include "eval_expr.h"
+#include "bistro.h"
 
 int	get_oper(char *str)
 {
@@ -92,16 +92,18 @@ char	*int_toc(int nb)
 
 char	*do_op(char *a, char *b, char *char_oper)
 {
-  int	a_int;
-  int	b_int;
-  int	(*calc_op[5])(int, int);
+  t_ci	a_stru;
+  t_ci	b_stru;
+  t_ci	rst_stru;
+  t_ci	(*calc_op[5])(t_ci, t_ci);
 
-  a_int = my_getnbr(a);
-  b_int = my_getnbr(b);
-  calc_op[0] = &add;
-  calc_op[1] = &less;
-  calc_op[2] = &times;
-  calc_op[3] = &divide;
-  calc_op[4] = &modulo;
-  return (int_toc(calc_op[get_oper(char_oper)](a_int, b_int)));
+  char_to_stru(&a_stru, a);
+  char_to_stru(&b_stru, b);
+  calc_op[0] = &infinadd;
+  calc_op[1] = &infinsub;
+  calc_op[2] = &infinmul;
+  calc_op[3] = &infindiv;
+  calc_op[4] = &infinmod;
+  rst_stru = calc_op[get_oper(char_oper)](a_stru, b_stru);
+  return (stru_to_char(&rst_stru));
 }

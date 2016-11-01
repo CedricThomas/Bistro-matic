@@ -5,11 +5,11 @@
 ** Login   <arthur@epitech.net>
 **
 ** Started on  Tue Oct 25 11:37:27 2016 Arthur Knoepflin
-** Last update Thu Oct 27 18:37:31 2016 Arthur Knoepflin
+** Last update Tue Nov  1 22:36:27 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
-#include "eval_expr.h"
+#include "bistro.h"
 #include "my.h"
 
 int	is_operator(char c)
@@ -20,34 +20,33 @@ int	is_operator(char c)
   return (0);
 }
 
-int	nb_size(char *str)
+int	nb_size(t_list l)
 {
   int	i;
   int	count;
 
   i = 0;
   count = 0;
-  while (str[i])
+  while (l.e[i])
     {
-      if (i == 0 && (str[i] >= '0' && str[i] <= '9'))
+      if (i == 0 && is_number(l.e[i], l.b))
 	count += 1;
-      else if (i > 0 && str[i] >= '0' &&
-	       str[i] <= '9' && is_operator(str[i - 1]))
+      else if (i > 0 && is_number(l.e[i], l.b) && is_oper(l.e[i - 1], l.o))
 	count += 1;
-      if (i == 0 && str[i] == '(')
+      if (i == 0 && l.e[i] == l.o[OP_OPEN_PARENT_IDX])
 	count += 1;
-      if (i > 0 && (str[i] == '-'))
-	if (!is_operator(str[i - 1]) || str[i - 1] == ')')
+      if (i > 0 && (l.e[i] == l.o[OP_NEG_IDX]))
+	if (!is_oper(l.e[i - 1], l.o) || l.e[i - 1] == l.o[OP_CLOSE_PARENT_IDX])
 	  count += 1;
 	else;
-      else if (i > 0 && is_operator(str[i]))
+      else if (i > 0 && is_oper(l.e[i], l.o))
 	count += 1;
       i += 1;
     }
   return (count);
 }
 
-int	index_child(char *str, int index)
+int	index_child(t_list l, int index)
 {
   int	i;
   int	count;
@@ -56,38 +55,39 @@ int	index_child(char *str, int index)
   count = 0;
   if (index == 0)
     return (0);
-  while (str[i] && count <= index)
+  while (l.e[i] && count <= index)
     {
-      count = index_child_2(count, i, str);
+      count = index_child_2(count, i, l);
       if (count <= index)
 	i += 1;
     }
-  if (!is_operator(str[i]) && str[i - 1] == '-' &&
-      (is_operator(str[i - 2]) && str[i - 2] != ')'))
+  if (!is_oper(l.e[i], l.o) && l.e[i - 1] == l.o[OP_NEG_IDX] &&
+      (is_oper(l.e[i - 2], l.o) && l.e[i - 2] != l.o[OP_CLOSE_PARENT_IDX]))
     i -= 1;
   return (i);
 }
 
-int	size_child(char *str, int index)
+int	size_child(t_list l, int index)
 {
   int	i;
   int	count;
 
-  i = index_child(str, index);
+  i = index_child(l, index);
   count = 0;
-  if (str[i] == '-')
+  if (l.e[i] == l.o[OP_NEG_IDX])
     {
-      if (i == 0 || (is_operator(str[i - 1]) && str[i - 1] != ')'))
+      if (i == 0 || (is_oper(l.e[i - 1], l.o) &&
+		     l.e[i - 1] != l.o[OP_CLOSE_PARENT_IDX]))
 	{
 	  i += 1;
 	  count += 1;
 	}
-      else if (!is_operator(str[i - 1]))
+      else if (!is_oper(l.e[i - 1], l.o))
 	return (1);
     }
-  if (is_operator(str[i]))
+  if (is_oper(l.e[i], l.o))
     return (1);
-  while (str[i] >= '0' && str[i] <= '9')
+  while (is_number(l.e[i], l.b))
     {
       i += 1;
       count += 1;
@@ -95,25 +95,25 @@ int	size_child(char *str, int index)
   return (count);
 }
 
-char	**str_to_stack(char *str)
+char	**str_to_stack(t_list l)
 {
   int	i;
   int	j;
   char	**ret;
 
   i = 0;
-  if ((ret = malloc(sizeof(char *) * (nb_size(str) + 1))) == NULL)
+  if ((ret = malloc(sizeof(char *) * (nb_size(l) + 1))) == NULL)
     return (NULL);
-  ret[nb_size(str)] = NULL;
-  while (i < nb_size(str))
+  ret[nb_size(l)] = NULL;
+  while (i < nb_size(l))
     {
-      if ((ret[i] = malloc(sizeof(char) * ((size_child(str, i) + 1)))) == NULL)
+      if ((ret[i] = malloc(sizeof(char) * ((size_child(l, i) + 1)))) == NULL)
 	return (NULL);
-      ret[i][size_child(str, i)] = '\0';
+      ret[i][size_child(l, i)] = '\0';
       j = 0;
-      while (j < size_child(str, i))
+      while (j < size_child(l, i))
 	{
-	  ret[i][j] = str[index_child(str, i) + j];
+	  ret[i][j] = l.e[index_child(l, i) + j];
 	  j += 1;
 	}
       i += 1;

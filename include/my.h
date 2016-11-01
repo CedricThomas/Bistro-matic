@@ -5,13 +5,14 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Thu Oct 13 11:14:10 2016 Cédric Thomas
-** Last update Sat Oct 22 18:25:12 2016 Cédric Thomas
+** Last update Tue Nov  1 23:16:33 2016 Arthur Knoepflin
 */
 
 #ifndef MY_H_
 # define MY_H_
 
 void		my_putchar(char c);
+void		my_memset(char *, int, int);
 int		my_isneg(int nb);
 int		my_put_nbr(int nb);
 int		my_swap(int *a, int *b);

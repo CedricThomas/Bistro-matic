@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Mon Oct 24 18:25:52 2016 Cédric Thomas
-** Last update Mon Oct 31 13:21:32 2016 Arthur Knoepflin
+** Last update Tue Nov  1 23:56:25 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
@@ -48,3 +48,14 @@ char	*add_retenu(int retenu, char *nb, int sign, char mod)
   result[i] = '\0';
   return (result);
 }
+
+t_ci	stru_dup(t_ci *stru)
+{
+  t_ci	duped;
+
+  duped.n = my_strdup(stru->n);
+  duped.s = stru->s;
+  duped.l = my_strlen(stru->n);
+  return (duped);
+}
+  

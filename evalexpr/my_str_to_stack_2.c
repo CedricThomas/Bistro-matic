@@ -5,40 +5,39 @@
 ** Login   <arthur@epitech.net>
 ** 
 ** Started on  Thu Oct 27 15:14:48 2016 Arthur Knoepflin
-** Last update Fri Oct 28 08:44:06 2016 Arthur Knoepflin
+** Last update Tue Nov  1 22:36:37 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
-#include "eval_expr.h"
+#include "bistro.h"
 #include "my.h"
 
-int	index_child_2(int count, int i, char *str)
+int	index_child_2(int count, int i, t_list l)
 {
-  if (i == 0 && str[i] >= '0' && str[i] <= '9')
+  if (i == 0 && is_number(l.e[i], l.b))
     count += 1;
-  else if (i > 0 && str[i] >= '0' &&
-	   str[i] <= '9' && is_operator(str[i - 1]))
+  else if (i > 0 && is_number(l.e[i], l.b) && is_oper(l.e[i - 1], l.o))
     count += 1;
-  if (i == 0 && str[i] == '(')
+  if (i == 0 && l.e[i] == l.o[OP_OPEN_PARENT_IDX])
     count += 1;
-  if (i > 0 && (str[i] == '-'))
+  if (i > 0 && (l.e[i] == l.o[OP_NEG_IDX]))
     {
-      if (!is_operator(str[i - 1]) || str[i - 1] == ')')
+      if (!is_oper(l.e[i - 1], l.o) || l.e[i - 1] == l.o[OP_OPEN_PARENT_IDX])
 	count += 1;
     }
-  else if (i > 0 && is_operator(str[i]))
+  else if (i > 0 && is_oper(l.e[i], l.o))
     count += 1;
   return (count);
 }
 
-int	is_nb(char *str)
+int	is_nb(char *str, t_list l)
 {
   int	i;
 
   i = 0;
   while (str[i] != '\0')
     {
-      if (str[i] >= '0' && str[i] <= '9')
+      if (is_number(str[i], l.b))
 	return (1);
       i += 1;
     }

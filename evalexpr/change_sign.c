@@ -5,53 +5,56 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Fri Oct 28 10:46:39 2016 Cédric Thomas
-** Last update Fri Oct 28 13:13:09 2016 Arthur Knoepflin
+** Last update Tue Nov  1 22:35:48 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
 #include "my.h"
-#include "eval_expr.h"
+#include "bistro.h"
 
-int	get_sign(char *src)
+int	gt_sign(t_list list)
 {
   int	i;
   int	add;
 
   i = 0;
   add = 0;
-  while (src[i] != '\0')
+  while (list.e[i] != '\0')
     {
-      if (i > 0 && src[i] == '(' && src[i - 1] == '-')
+      if (i > 0 && list.e[i] == list.o[OP_OPEN_PARENT_IDX] &&
+	  list.e[i - 1] == list.o[OP_NEG_IDX])
 	add += 2;
       i += 1;
     }
   return (add);
 }
 
-char	*change_sign(char *src)
+char	*change_sign(t_list l)
 {
   char	*dest;
   int	i;
   int	j;
 
-  dest = malloc(sizeof(char) * (my_strlen(src) + 1 + get_sign(src)));
+  if ((dest = malloc(sizeof(char) * (my_strlen(l.e) + 1 + gt_sign(l)))) == NULL)
+    exit(EXIT_MALLOC);
   i = 0;
   j = 0;
-  while (src[i] != '\0')
+  while (l.e[i] != '\0')
     {
-      if ((i + 1) < my_strlen(src) && src[i] == '-' && src[i + 1] == '(')
+      if ((i + 1) < my_strlen(l.e) && l.e[i] == l.o[OP_NEG_IDX] &&
+	  l.e[i + 1] == l.o[OP_OPEN_PARENT_IDX])
 	{
-	  dest[j] = src[i];
-	  dest[j + 1] = '1';
-	  dest[j + 2] = '*';
+	  dest[j] = l.e[i];
+	  dest[j + 1] = l.b[1];
+	  dest[j + 2] = l.o[OP_MULT_IDX];
 	  j += 2;
 	}
       else
-	dest[j] = src[i];
+	dest[j] = l.e[i];
       j += 1;
       i += 1;
     }
   dest[j] = '\0';
-  free(src);
+  free(l.e);
   return (dest);
 }

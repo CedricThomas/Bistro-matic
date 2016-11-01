@@ -5,21 +5,21 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Tue Oct 25 18:01:49 2016 Cédric Thomas
-** Last update Fri Oct 28 08:38:06 2016 Arthur Knoepflin
+** Last update Tue Nov  1 22:36:53 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
 #include "my.h"
-#include "eval_expr.h"
+#include "bistro.h"
 
-int	is_op(char *str)
+int	is_op(char *str, t_list l)
 {
   char	c;
 
   c = str[0];
-  if (c != '+' && c != '-')
-    if (c != '/' && c != '*')
-      if (c != '%')
+  if (c != l.o[OP_PLUS_IDX] && c != l.o[OP_SUB_IDX])
+    if (c != l.o[OP_DIV_IDX] && c != l.o[OP_MULT_IDX])
+      if (c != l.o[OP_MOD_IDX])
 	return (0);
   if (my_strlen(str) == 1)
     return (1);
@@ -41,7 +41,7 @@ void	transfert_stack(char **stack1, char **stack2)
     }
 }
 
-void	swap(char *in, char **out, char **pile, int *count)
+void	swap(char *in, char **out, char **pile, int *count, t_list l)
 {
   char	*last;
   int   i;
@@ -52,11 +52,9 @@ void	swap(char *in, char **out, char **pile, int *count)
       append_st(pile, in);
       return ;
     }
-  if ((last[0] == '/' || last[0] == '*' || last[0] == '%')
-      && (in[0] == '-' || in[0] == '+') ||
-      (last[0] == '/' || last[0] == '*' || last[0] == '%')
-      && (in[0] == '/' || in[0] == '*' || in[0] == '%') ||
-      ((in[0] == '-' || in[0] == '+') && (last[0] == '-' || last[0] == '+')))
+  if (is_op_prio(last[0], l.o) && is_op_nprio(last[0], l.o) ||
+      is_op_prio(last[0], l.o) && is_op_prio(last[0], l.o) ||
+      is_op_nprio(last[0], l.o) && is_op_nprio(last[0], l.o))
     {
       transfert_stack(pile, out);
       if (count > 0 && get_last(pile) != NULL && get_last(pile)[0] != '(')
@@ -68,7 +66,7 @@ void	swap(char *in, char **out, char **pile, int *count)
     append_st(pile, in);
 }
 
-void	destack(char **pile, char **out, char c)
+void	destack(char **pile, char **out, char c, t_list l)
 {
   int	size;
 
@@ -78,7 +76,7 @@ void	destack(char **pile, char **out, char c)
       transfert_stack(pile, out);
       size -= 1;
     }
-  if (c == '(' && pile[size][0] == c)
+  if (c == l.o[OP_OPEN_PARENT_IDX] && pile[size][0] == c)
     {
       free(pile[size]);
       pile[size] = NULL;
