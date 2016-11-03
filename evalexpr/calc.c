@@ -1,18 +1,18 @@
 /*
 ** calc.c for evalexpr in /home/cedric/CPool_EvalExpr
-** 
+**
 ** Made by Cédric Thomas
 ** Login   <cedric@epitech.net>
-** 
+**
 ** Started on  Tue Oct 25 20:41:56 2016 Cédric Thomas
-** Last update Tue Nov  1 23:31:17 2016 Arthur Knoepflin
+** Last update Thu Nov  3 16:19:12 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
 #include "my.h"
 #include "bistro.h"
 
-int	get_nb_op(char **str, t_list l)
+int	get_nb_op(char **str)
 {
   int	i;
   int	count;
@@ -21,14 +21,14 @@ int	get_nb_op(char **str, t_list l)
   count = 0;
   while (str[i] != 0)
     {
-      if (my_strlen(str[i]) == 1 && is_op(str[i], l))
+      if (my_strlen(str[i]) == 1 && is_op(str[i]))
 	count += 1;
       i += 1;
     }
   return (count);
 }
 
-char	**copy(char **stack, char **cpy, t_list l)
+char	**copy(char **stack, char **cpy, char *b)
 {
   int	i;
   int	j;
@@ -40,9 +40,9 @@ char	**copy(char **stack, char **cpy, t_list l)
   while (i < get_stack_size(stack))
     {
       if (bool && (i + 2) < get_stack_size(stack)
-	  && is_op(stack[i + 2], l))
+	  && is_op(stack[i + 2]))
 	{
-	  cpy[j] = do_op(stack[i], stack[i + 1], stack[i + 2]);
+	  cpy[j] = do_op(stack[i], stack[i + 1], stack[i + 2], b);
 	  i += 2;
 	  bool = 0;
 	}
@@ -86,22 +86,24 @@ char	**free_stack(char **stack)
   return (stack);
 }
 
-char	*calc(char **str, t_list l)
+char	*calc(char **str, char *b)
 {
   int	i;
-  int	result;
+  char	*result;
   int	l_stack;
   char	**cpy;
 
   l_stack = get_stack_size(str);
-  while (get_nb_op(str, l))
+  while (get_nb_op(str))
     {
       l_stack -= 1;
       cpy = malloc(sizeof(char *) * (l_stack + 1));
-      cpy = copy(str, cpy, l);
+      cpy = copy(str, cpy, b);
       str = free_stack(str);
       str = copy_stack(str, cpy);
       cpy = free_stack(cpy);
     }
-  return (str[0]);
+  result = my_strdup(str[0]);
+  free_stack(str);
+  return (result);
 }

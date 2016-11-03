@@ -5,11 +5,7 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Mon Oct 24 18:25:52 2016 Cédric Thomas
-<<<<<<< HEAD
-** Last update Tue Nov  1 23:56:25 2016 Arthur Knoepflin
-=======
-** Last update Mon Oct 31 21:23:50 2016 Cédric Thomas
->>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0
+** Last update Wed Nov  2 22:39:26 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
@@ -22,20 +18,35 @@ t_ci	stru_dup(t_ci *ci)
 
   duped.n = my_strdup(ci->n);
   duped.s = ci->s;
-  duped.l = ci->l;
+  duped.l = my_strlen(ci->n);
   return (duped);
 }
 
 int	t_ci_cmp(t_ci *ci1, t_ci *ci2)
 {
-  if (ci1->l == ci2->l && my_strcmp(ci1->n, ci2->n) == 0)
+  if (my_strcmp(ci1->n, ci2->n) == 0 && ci1->s == ci2->s && ci1->l == ci2->l)
     return (0);
-  else if (ci1->l == ci2->l && my_strcmp(ci1->n, ci2->n) < 0
-      || ci1->l < ci2->l)
-    return (-1);
-  else if (ci1->l == ci2->l && my_strcmp(ci1->n, ci2->n) > 0
-      || ci1->l > ci2->l)
-    return (1);  
+  if (ci1->s == ci2->s && ci1->s == 0)
+    {
+      if (ci1->l == ci2->l && my_strcmp(ci1->n, ci2->n) < 0 || ci1->l < ci2->l)
+	return (-1);
+      else
+	return (1);
+    }
+  else if (ci1->s == ci2->s && ci1->s == 1)
+    {
+      if (ci1->l == ci2->l && my_strcmp(ci1->n, ci2->n) > 0 || ci1->l < ci2->l)
+	return (-1);
+      else
+	return (1);
+    }
+  else
+    {
+      if (ci1->s == 1)
+	return (-1);
+      else
+	return (1);
+    }
 }
 
 int	get_nl(char *nb)
@@ -74,14 +85,3 @@ char	*add_retenu(int retenu, char *nb, int sign, char mod)
   result[i] = '\0';
   return (result);
 }
-
-t_ci	stru_dup(t_ci *stru)
-{
-  t_ci	duped;
-
-  duped.n = my_strdup(stru->n);
-  duped.s = stru->s;
-  duped.l = my_strlen(stru->n);
-  return (duped);
-}
-  

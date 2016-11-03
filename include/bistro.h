@@ -4,28 +4,12 @@
 ** Made by Cédric Thomas
 ** Login   <cedric@epitech.net>
 **
-<<<<<<< HEAD
 ** Started on  Wed Oct 26 14:44:54 2016 Cédric Thomas
-** Last update Wed Nov  2 00:18:19 2016 Arthur Knoepflin
-=======
-** Started on  Mon Oct 24 10:18:20 2016 Cédric Thomas
-<<<<<<< HEAD
-** Last update Tue Nov  1 09:28:07 2016 Cédric Thomas
-=======
-** Last update Mon Oct 31 12:04:06 2016 Cebrail Aktas
->>>>>>> 601521785ae3bf39eea882e5b6ccdf3c93d563e1
->>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0
+** Last update Thu Nov  3 18:00:28 2016 Arthur Knoepflin
 */
 
 #ifndef EVAL_EXPR_H_
 # define EVAL_EXPR_H_
-
-typedef struct	s_list
-{
-  char	*b;
-  char	*o;
-  char	*e;
-}	t_list;
 
 typedef	struct	s_ci
 {
@@ -36,47 +20,50 @@ typedef	struct	s_ci
 
 /* change_sign.c */
 
-int	get_sign(t_list);
-char	*change_sign(t_list);
+int	get_sign(char *);
+char	*change_sign(char *);
+char	*get_oper_norm();
+int	is_opera(char, char *);
+char	*change_op(char *, char *);
 
 /* my_str_to_stack */
 
 int	is_operator(char);
-int	nb_size(t_list);
-int	index_child(t_list, int);
-int	size_child(t_list, int);
-char	**str_to_stack(t_list);
+int	nb_size(char *, char *);
+int	index_child(char *, int, char *);
+int	size_child(char *, int, char *);
+char	**str_to_stack(char *, char *);
 
 /* my_str_to_stack_2.c */
 
-int	index_child_2(int, int, t_list);
-int	is_nb(char *, t_list);
+int	index_child_2(int, int, char *, char *);
+int	is_nb(char *, char *);
 void	free_all(char **, char **);
 
 /* my_epurstr.c */
 
 static void	int_memset(int *, int);
-t_list		my_epurstr(t_list);
+char		*my_epurstr(char *);
 
 /* module_stack.c */
 
-int	is_op(char *, t_list);
+int	is_op(char *);
 void	transfert_stack(char **, char **);
-void	swap(char *, char **, char **, int *, t_list);
-void	destack(char **, char **, char, t_list);
+void	swap(char *, char **, char **, int *);
+void	destack(char **, char **, char);
 int	get_stack_size(char **);
 
 /* evalexpr.c */
 
-char	*eval_expr(t_list, unsigned int);
+char	*eval_expr(char *, char *, char *);
 
 /* in_to_rpn.c */
 
-char	**set_pile(char **, t_list);
-char	**set_out(char **, t_list);
+char	**set_pile(char **, char *);
+char	**set_out(char **);
 int	append_st(char **, char *);
 char	*get_last(char **);
-char	**in_to_rpn(char **, t_list);
+char	**in_to_rpn(char **, char *);
 
 /* do_op.c */
 
@@ -84,15 +71,15 @@ int	get_oper(char *);
 int	size_int(int);
 char	*toc_alloc(int);
 char	*int_toc(int);
-char	*do_op(char *, char *, char *);
+char	*do_op(char *, char *, char *, char *);
 
 /* calc.c */
 
-int	get_nb_op(char **, t_list);
-char	**copy(char **, char **, t_list);
+int	get_nb_op(char **);
+char	**copy(char **, char **, char *);
 char	**copy_stack(char **, char **);
 char	**free_stack(char **);
-char	*calc(char **, t_list);
+char	*calc(char **, char *);
 
 /* calc_fnt */
 
@@ -104,9 +91,6 @@ int	modulo(t_ci, t_ci);
 
 /* get_oper.c */
 
-int	is_oper(char, char *);
-int	is_op_prio(char, char *);
-int	is_op_nprio(char, char *);
 int	is_number(char, char *);
 
 /* module_bistro.c */
@@ -121,20 +105,29 @@ int	char_to_stru(t_ci *, char *);
 char	*stru_to_char_malloc(t_ci *);
 char	*stru_to_char(t_ci *);
 
-/* convert.c */
+/* infinbase */
+
+t_ci	infinbase(t_ci *, char *, char*);
+t_ci	t_ci_dec(t_ci *, char *);
+t_ci	t_ci_base(t_ci *, char *, t_ci *, int);
+t_ci	search(char *, char);
+void	trifree(t_ci *, t_ci *, t_ci *);
+
+/* convert.c
 
 static char	*my_strndup(char *, int);
 int		char_to_stru(t_ci *, char *);
+*/
 
 /* infin_add */
 
-static void	check_sign(t_ci *, t_ci *, t_ci *);
+static void	check_sign(t_ci *, t_ci *, t_ci *, int *);
 static char	*add_mod(t_ci *, t_ci *, int);
 t_ci		infinadd(t_ci, t_ci);
 
 /* infin_sub */
 
-static void	check_sign(t_ci *, t_ci *, t_ci *);
+static void	check_sign(t_ci *, t_ci *, t_ci *, int *);
 static char	*sub_mod(t_ci *, t_ci *, int);
 t_ci		infinsub(t_ci, t_ci);
 
@@ -158,8 +151,15 @@ t_ci	infindiv(t_ci, t_ci);
 t_ci	mod_mod(t_ci *, t_ci *);
 t_ci	infinmod(t_ci, t_ci);
 
-int	t_ci_cmp(t_ci *nb1, t_ci *nb2);
-<<<<<<< HEAD
+int	t_ci_cmp(t_ci *, t_ci *);
+
+/* op_destrcuctor.c */
+
+static int	op_get_nbop(char *, int);
+static int	op_get_parity(char *, int);
+static int	op_get_size(char *);
+static char	*del_plus(char *, int, int);
+char		*opsup(char *);
 
 #define	OP_OPEN_PARENT_IDX	0
 #define	OP_CLOSE_PARENT_IDX	1
@@ -169,14 +169,6 @@ int	t_ci_cmp(t_ci *nb1, t_ci *nb2);
 #define	OP_MULT_IDX		4
 #define OP_DIV_IDX		5
 #define	OP_MOD_IDX		6
-=======
-t_ci	infinadd(t_ci nb1, t_ci nb2);
-t_ci	infinsub(t_ci nb1, t_ci nb2);
-t_ci	infindiv(t_ci nb1, t_ci nb2);
-t_ci	infinmul(t_ci *, t_ci *);
-t_ci	stru_dup(t_ci *);
-t_ci	get_boost(t_ci *, t_ci *);
->>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0
 
 #define	EXIT_USAGE		84
 #define	EXIT_BASE		84

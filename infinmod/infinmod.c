@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Fri Oct 28 13:28:36 2016 Cédric Thomas
-** Last update Wed Nov  2 00:20:19 2016 Arthur Knoepflin
+** Last update Thu Nov  3 16:37:33 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
@@ -35,7 +35,22 @@ t_ci	mod_mod(t_ci *nb1, t_ci *nb2)
 t_ci	infinmod(t_ci ci1, t_ci ci2)
 {
   t_ci	res;
+  char	*result;
+  int	sign;
 
+  if (my_strcmp(ci2.n, "0") == 0)
+    {
+      my_putstr(ERROR_MSG);
+      exit(EXIT_OPS);
+    }
+  result = NULL;
+  if (ci1.s == 1)
+    sign = 1;
+  else
+    sign = 0;
+  ci1.s = 0;
+  ci2.s = 0;
   res = mod_mod(&ci1, &ci2);
+  res.s = sign;
   return (res);
 }

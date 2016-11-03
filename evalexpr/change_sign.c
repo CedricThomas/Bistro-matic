@@ -5,56 +5,104 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Fri Oct 28 10:46:39 2016 Cédric Thomas
-** Last update Tue Nov  1 22:35:48 2016 Arthur Knoepflin
+** Last update Thu Nov  3 09:26:19 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
 #include "my.h"
 #include "bistro.h"
 
-int	gt_sign(t_list list)
+int	get_sign(char *src)
 {
   int	i;
   int	add;
 
   i = 0;
   add = 0;
-  while (list.e[i] != '\0')
+  while (src[i] != '\0')
     {
-      if (i > 0 && list.e[i] == list.o[OP_OPEN_PARENT_IDX] &&
-	  list.e[i - 1] == list.o[OP_NEG_IDX])
+      if (i > 0 && src[i] == '(' && src[i - 1] == '-')
 	add += 2;
       i += 1;
     }
   return (add);
 }
 
-char	*change_sign(t_list l)
+char	*change_sign(char *src)
 {
   char	*dest;
   int	i;
   int	j;
 
-  if ((dest = malloc(sizeof(char) * (my_strlen(l.e) + 1 + gt_sign(l)))) == NULL)
-    exit(EXIT_MALLOC);
+  dest = malloc(sizeof(char) * (my_strlen(src) + 1 + get_sign(src)));
   i = 0;
   j = 0;
-  while (l.e[i] != '\0')
+  while (src[i] != '\0')
     {
-      if ((i + 1) < my_strlen(l.e) && l.e[i] == l.o[OP_NEG_IDX] &&
-	  l.e[i + 1] == l.o[OP_OPEN_PARENT_IDX])
+      if ((i + 1) < my_strlen(src) && src[i] == '-' && src[i + 1] == '(')
 	{
-	  dest[j] = l.e[i];
-	  dest[j + 1] = l.b[1];
-	  dest[j + 2] = l.o[OP_MULT_IDX];
+	  dest[j] = src[i];
+	  dest[j + 1] = '1';
+	  dest[j + 2] = '*';
 	  j += 2;
 	}
       else
-	dest[j] = l.e[i];
+	dest[j] = src[i];
       j += 1;
       i += 1;
     }
   dest[j] = '\0';
-  free(l.e);
+  free(src);
   return (dest);
+}
+
+char	*get_oper_norm()
+{
+  char	*oper;
+
+  oper = malloc(sizeof(char) * (8));
+  oper[0] = '(';
+  oper[1] = ')';
+  oper[2] = '+';
+  oper[3] = '-';
+  oper[4] = '*';
+  oper[5] = '/';
+  oper[6] = '%';
+  oper[7] = '\0';
+  return (oper);
+}
+
+int	is_opera(char c, char *op)
+{
+  int	i;
+
+  i = 0;
+  while (op[i])
+    {
+      if (op[i] == c)
+	return (i);
+      i += 1;
+    }
+  return (-1);
+}
+
+char	*change_op(char *str, char *op)
+{
+  int	i;
+  char	*oper;
+  char	*ret;
+
+  i = 0;
+  oper = get_oper_norm();
+  ret = malloc(sizeof(char) * (my_strlen(str) + 1));
+  ret[my_strlen(str)] = '\0';
+  while (str[i])
+    {
+      if (is_opera(str[i], op) >= 0)
+	ret[i] = oper[is_opera(str[i], op)];
+      else
+	ret[i] = str[i];
+      i += 1;
+    }
+  return (ret);
 }

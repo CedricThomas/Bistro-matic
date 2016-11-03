@@ -5,15 +5,16 @@
 ** Login   <arthur@epitech.net>
 **
 ** Started on  Fri Oct 28 15:24:48 2016 Arthur Knoepflin
-<<<<<<< HEAD
-** Last update Tue Nov  1 23:39:34 2016 Arthur Knoepflin
-=======
-** Last update Mon Oct 31 17:07:59 2016 Cédric Thomas
->>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0
+** Last update Wed Nov  2 22:24:31 2016 Arthur Knoepflin
 */
 #include <stdlib.h>
 #include "bistro.h"
 #include "my.h"
+
+int	stl(char *str)
+{
+  return (my_strlen(str));
+}
 
 void	clear_str(t_ci *str)
 {
@@ -30,11 +31,7 @@ void	clear_str(t_ci *str)
     len += 1;
   if ((ret = malloc(sizeof(char) * (len + 1))) == NULL)
     {
-<<<<<<< HEAD
       str->n = NULL;
-=======
-      ret = NULL;
->>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0
       return ;
     }
   ret[len] = '\0';
@@ -95,7 +92,5 @@ t_ci	infinmul(t_ci nb1, t_ci nb2)
   ret.l = my_strlen(ret.n);
   clear_str(&ret);
   free(calc);
-  free(nb1->n);
-  free(nb2->n);
   return (ret);
 }

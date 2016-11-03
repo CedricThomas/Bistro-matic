@@ -5,11 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Mon Oct 24 09:00:08 2016 Cédric Thomas
-<<<<<<< HEAD
-** Last update Tue Nov  1 22:31:44 2016 Arthur Knoepflin
-=======
-** Last update Mon Oct 31 16:56:34 2016 Cédric Thomas
->>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0
+** Last update Thu Nov  3 19:04:26 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
@@ -58,6 +54,12 @@ static char	*sub_mod(t_ci *a, t_ci *b, int sign)
   return (result);
 }
 
+void	free_stru_in(t_ci ci1, t_ci ci2)
+{
+  free(ci1.n);
+  free(ci2.n);
+}
+
 t_ci	infinsub(t_ci ci1, t_ci ci2)
 {
   char  *result;
@@ -81,9 +83,6 @@ t_ci	infinsub(t_ci ci1, t_ci ci2)
       char_to_stru(&res, result);
     }
   if (bool == 0)
-    {
-      free(ci1.n);
-      free(ci2.n);
-    }
+    free_stru_in(ci1, ci2);
   return (res);
 }

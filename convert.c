@@ -5,11 +5,7 @@
 ** Login   <arthur@epitech.net>
 **
 ** Started on  Mon Oct 31 09:34:47 2016 Arthur Knoepflin
-<<<<<<< HEAD
-** Last update Tue Nov  1 22:39:08 2016 Arthur Knoepflin
-=======
-** Last update Mon Oct 31 16:45:27 2016 Cédric Thomas
->>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0
+** Last update Thu Nov  3 13:18:37 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
@@ -63,7 +59,6 @@ int	char_to_stru(t_ci *ci, char *nb)
 	return (1);
       i += 1;
     }
-  free(nb);
   return (0);
 }
 

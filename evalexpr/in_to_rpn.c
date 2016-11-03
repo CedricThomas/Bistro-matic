@@ -5,14 +5,14 @@
 ** Login   <arthur@epitech.net>
 **
 ** Started on  Tue Oct 25 10:51:56 2016 Arthur Knoepflin
-** Last update Tue Nov  1 22:38:12 2016 Arthur Knoepflin
+** Last update Thu Nov  3 14:18:45 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
 #include "my.h"
 #include "bistro.h"
 
-char	**set_pile(char **in, t_list l)
+char	**set_pile(char **in, char *b)
 {
   int	i[2];
   char	**pile;
@@ -21,7 +21,7 @@ char	**set_pile(char **in, t_list l)
   i[1] = 0;
   while (in[i[0]] != 0)
     {
-      if (in[i[0]][0] != l.o[OP_CLOSE_PARENT_IDX] && !is_nb(in[i[0]], l))
+      if (in[i[0]][0] != ')' && !is_nb(in[i[0]], b))
 	i[1] += 1;
       i[0] += 1;
     }
@@ -37,7 +37,7 @@ char	**set_pile(char **in, t_list l)
   return (pile);
 }
 
-char	**set_out(char **in, t_list l)
+char	**set_out(char **in)
 {
   int	i[2];
   char	**out;
@@ -46,8 +46,7 @@ char	**set_out(char **in, t_list l)
   i[1] = 0;
   while (in[i[0]] != 0)
     {
-      if (in[i[0]][0] != l.o[OP_CLOSE_PARENT_IDX] &&
-	  in[i[0]][0] != l.o[OP_OPEN_PARENT_IDX])
+      if (in[i[0]][0] != ')' && in[i[0]][0] != '(')
 	i[1] += 1;
       i[0] += 1;
     }
@@ -92,31 +91,31 @@ char	*get_last(char **stack)
     return (NULL);
 }
 
-char	**in_to_rpn(char **in, t_list l)
+char	**in_to_rpn(char **in, char *b)
 {
   char	**pile;
   char	**out;
   int	i;
 
   i = 0;
-  pile = set_pile(in, l);
-  out = set_out(in, l);
+  pile = set_pile(in, b);
+  out = set_out(in);
   while (in[i] != 0)
     {
-      if (is_nb(in[i], l))
+      if (is_nb(in[i], b))
 	append_st(out, in[i]);
-      else if (in[i][0] == l.o[OP_OPEN_PARENT_IDX])
+      else if (in[i][0] == '(')
 	append_st(pile, in[i]);
-      else if (is_op(in[i], l))
-      	swap(in[i], out, pile, &i, l);
-      else if (in[i][0] == l.o[OP_CLOSE_PARENT_IDX])
-      	{
-      	  destack(pile, out, l.o[OP_OPEN_PARENT_IDX], l);
-      	  free(in[i]);
-      	}
+      else if (is_op(in[i]))
+	swap(in[i], out, pile, &i);
+      else if (in[i][0] == ')')
+	{
+	  destack(pile, out, '(');
+	  free(in[i]);
+	}
       i += 1;
     }
-  destack(pile, out, '\0', l);
+  destack(pile, out, '\0');
   free_all(pile, in);
   return (out);
 }

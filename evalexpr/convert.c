@@ -5,8 +5,11 @@
 ** Login   <arthur@epitech.net>
 **
 ** Started on  Mon Oct 31 09:34:47 2016 Arthur Knoepflin
-** Last update Mon Oct 31 10:09:20 2016 Arthur Knoepflin
+** Last update Thu Nov  3 15:11:16 2016 Arthur Knoepflin
 */
+#include <stdlib.h>
+#include "bistro.h"
+#include "my.h"
 
 int	char_to_stru(t_ci *ci, char *nb)
 {
@@ -27,7 +30,7 @@ int	char_to_stru(t_ci *ci, char *nb)
     }
   while ((*ci).n[i] != '\0')
     {
-      if ((*ci).n[i] < '0' || (*ci).n[i] > '9')
+      if ((*ci).n[i], b >= '0' && (*ci).n[i], b <= '9')
 	return (1);
       i += 1;
     }

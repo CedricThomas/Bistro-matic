@@ -5,37 +5,31 @@
 ** Login   <arthur@epitech.net>
 **
 ** Started on  Tue Oct 25 22:43:58 2016 Arthur Knoepflin
-<<<<<<< HEAD:evalexpr/do_op.c
-** Last update Wed Nov  2 00:03:47 2016 Arthur Knoepflin
-=======
-** Last update Tue Nov  1 09:20:51 2016 Cédric Thomas
->>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0:int_to_char.c
+** Last update Thu Nov  3 17:53:17 2016 Arthur Knoepflin
 */
+
 #include <stdlib.h>
 #include "my.h"
 #include "bistro.h"
-<<<<<<< HEAD:evalexpr/do_op.c
 
 int	get_oper(char *str)
 {
   if (str)
     {
-      if (str[0] == '+')
+      if (my_strcmp(str, "+") == 0)
 	return (0);
-      if (str[0] == '-')
+      if (my_strcmp(str, "-") == 0)
 	return (1);
-      if (str[0] == '*')
+      if (my_strcmp(str, "*") == 0)
 	return (2);
-      if (str[0] == '/')
+      if (my_strcmp(str, "/") == 0)
 	return (3);
-      if (str[0] == '%')
+      if (my_strcmp(str, "%") == 0)
 	return (4);
       return (5);
     }
   return (6);
 }
-=======
->>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0:int_to_char.c
 
 int	size_int(int nb)
 {
@@ -57,15 +51,13 @@ char	*toc_alloc(int nb)
   char  *ret;
   if (nb < 0)
     {
-      if ((ret = malloc(sizeof(char) * (size_int(nb) + 2))) == NULL)
-	return (NULL);
+      ret = malloc(sizeof(char) * (size_int(nb) + 2));
       ret[0] = '-';
       nb *= (-1);
     }
   else
     {
-      if ((ret = malloc(sizeof(char) * (size_int(nb) + 1))) == NULL)
-	return (NULL);
+      ret = malloc(sizeof(char) * (size_int(nb) + 1));
     }
   return (ret);
 }
@@ -78,8 +70,6 @@ char	*int_toc(int nb)
   i[0] = 1;
   i[1] = size_int(nb);
   ret = toc_alloc(nb);
-  if (ret == NULL)
-    return (NULL);
   if (nb < 0)
     {
       nb *= (-1);
@@ -100,24 +90,24 @@ char	*int_toc(int nb)
     ret[0] = '0';
   return (ret);
 }
-<<<<<<< HEAD:evalexpr/do_op.c
 
-char	*do_op(char *a, char *b, char *char_oper)
+char	*do_op(char *a, char *b, char *char_oper, char *base)
 {
   t_ci	a_stru;
   t_ci	b_stru;
   t_ci	rst_stru;
-  t_ci	(*calc_op[5])(t_ci, t_ci);
+  t_ci  (*calc_op[5])(t_ci, t_ci);
 
   char_to_stru(&a_stru, a);
   char_to_stru(&b_stru, b);
+  a_stru = infinbase(&a_stru, base, "0123456789");
+  b_stru = infinbase(&b_stru, base, "0123456789");
   calc_op[0] = &infinadd;
   calc_op[1] = &infinsub;
   calc_op[2] = &infinmul;
   calc_op[3] = &infindiv;
   calc_op[4] = &infinmod;
   rst_stru = calc_op[get_oper(char_oper)](a_stru, b_stru);
+  rst_stru = infinbase(&rst_stru, "0123456789", base);
   return (stru_to_char(&rst_stru));
 }
-=======
->>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0:int_to_char.c

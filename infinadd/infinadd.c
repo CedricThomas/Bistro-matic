@@ -5,18 +5,14 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Mon Oct 24 09:00:08 2016 Cédric Thomas
-<<<<<<< HEAD
-** Last update Tue Nov  1 22:31:52 2016 Arthur Knoepflin
-=======
-** Last update Mon Oct 31 16:56:09 2016 Cédric Thomas
->>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0
+** Last update Thu Nov  3 18:57:18 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
 #include "my.h"
 #include "bistro.h"
 
-static void     check_sign(t_ci *ci1, t_ci *ci2, t_ci *res, int *bool)
+static void	check_sign(t_ci *ci1, t_ci *ci2, t_ci *res, int *bool)
 {
   *bool = 1;
   if (ci1->s == 1)
@@ -27,7 +23,7 @@ static void     check_sign(t_ci *ci1, t_ci *ci2, t_ci *res, int *bool)
   else
     {
       ci2->s = 0;
-      *res = infinsub(*ci1, *ci2);  
+      *res = infinsub(*ci1, *ci2);
     }
 }
 

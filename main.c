@@ -1,15 +1,11 @@
 /*
 ** main.c for main.c in /home/cedric/delivery/ex
-** 
+**
 ** Made by Cédric Thomas
 ** Login   <cedric@epitech.net>
-** 
+**
 ** Started on  Sat Oct 22 10:31:05 2016 Cédric Thomas
-<<<<<<< HEAD
-** Last update Tue Nov  1 22:38:56 2016 Arthur Knoepflin
-=======
-** Last update Tue Nov  1 09:04:14 2016 Cédric Thomas
->>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0
+** Last update Thu Nov  3 20:37:12 2016 Arthur Knoepflin
 */
 
 #include <unistd.h>
@@ -59,50 +55,39 @@ static void	check_ops(char *ops)
     }
 }
 
+static void	print_help()
+{
+  my_putstr("USAGE\n");
+  my_putstr("\t./calc base operators size_read\n\n");
+  my_putstr("DESCRIPTION\n\tbase\t   all the symbols of the base\n");
+  my_putstr("\toperators  the symbols ");
+  my_putstr("for the parentheses and the 5 operators\n");
+  my_putstr("\tsize_read  number of characters to be read\n");
+}
+
 int	main(int ac, char **av)
 {
   char		*expr;
+  char    *rst;
   unsigned int	size;
-  t_list	list;
 
+  if (ac == 2 && my_strcmp(av[1], "-h") == 0)
+    {
+      print_help();
+      return (EXIT_SUCCESS);
+    }
   if (ac != 4)
-<<<<<<< HEAD
     {
       my_putstr("Usage: ");
       my_putstr(av[0]);
-      my_putstr(" base ops \"()+_*/%\" exp_len\n");
+      my_putstr(" base ops \"()+-*/%\" exp_len\n");
       return (EXIT_USAGE);
     }
   check_base(av[1]);
   check_ops(av[2]);
   size = my_getnbr(av[3]);
-  list.e = get_expr(size);
-  list.b = av[1];
-  list.o = av[2];
-  expr = eval_expr(list, size);
-  free(list.e);
+  expr = get_expr(size);
+  rst = eval_expr(expr, av[2], av[1]);
+  my_putstr(rst);
   return (EXIT_SUCCESS);
-=======
-    return (84);
-  char_to_stru(&nb1, my_strdup(av[1]));
-  char_to_stru(&nb2, my_strdup(av[3]));
-  if (my_strcmp("+", av[2]) == 0)
-    nb = infinadd(nb1, nb2);
-  else if (my_strcmp("-", av[2]) == 0)
-    nb = infinsub(nb1, nb2);
-  else if (my_strcmp("*", av[2]) == 0)
-    nb = infinmul(&nb1, &nb2);
-  else if (my_strcmp("/", av[2]) == 0)
-    nb = infindiv(nb1, nb2);
-  else
-    return (0);
-  if (nb.s == 1)
-    my_putstr("-");
-  my_putstr(nb.n);
-  my_putchar('\n');
-  free(nb.n);
-  free(nb1.n);
-  free(nb2.n);
-  return (0);
->>>>>>> 7fecd17606b7771981a29d5fa21032d8b1c262f0
 }
