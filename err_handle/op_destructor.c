@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Sat Oct 22 10:31:05 2016 Cédric Thomas
-** Last update Fri Nov  4 14:59:23 2016 Arthur Knoepflin
+** Last update Fri Nov  4 15:38:24 2016 Arthur Knoepflin
 */
 #include <stdlib.h>
 #include "bistro.h"
@@ -91,28 +91,27 @@ static char	*del_plus(char *str, int i, int j, int size)
 char	*opsup(char *str)
 {
   char	*epured;
-  int	i;
-  int	j;
+  int	i[2];
 
-  i = 0;
-  j = 0;
+  i[0] = 0;
+  i[1] = 0;
   if ((epured = malloc(sizeof(char) * (op_get_size(str) + 1))) == NULL)
     exit(EXIT_MALLOC);
   epured[op_get_size(str)] = '\0';
-  while (str[i] != 0)
+  while (str[i[0]] != 0)
     {
-      if (str[i] == '+' || str[i] == '-')
+      if (str[i[0]] == '+' || str[i[0]] == '-')
 	{
-	  if (op_get_parity(str, i) == 1)
-	    epured[j] = '-';
+	  if (op_get_parity(str, i[0]) == 1)
+	    epured[i[1]] = '-';
 	  else
-	    epured[j] = '+';
-	  i += op_get_nbop(str, i) - 1;
+	    epured[i[1]] = '+';
+	  i[0] += op_get_nbop(str, i[0]) - 1;
 	}
       else
-	  epured[j] = str[i];
-      j += 1;
-      i += 1;
+	  epured[i[1]] = str[i[0]];
+      i[1] += 1;
+      i[0] += 1;
     }
   epured = del_plus(epured, 0, 0, my_strlen(epured));
   return (epured);
