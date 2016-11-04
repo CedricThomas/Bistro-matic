@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Tue Oct 25 20:41:56 2016 Cédric Thomas
-** Last update Thu Nov  3 16:19:12 2016 Arthur Knoepflin
+** Last update Fri Nov  4 15:20:12 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
@@ -62,7 +62,8 @@ char	**copy_stack(char **dest, char **src)
 
   len = get_stack_size(src);
   i = 0;
-  dest = malloc(sizeof(char *) * (len + 1));
+  if ((dest = malloc(sizeof(char *) * (len + 1))) == NULL)
+    exit(EXIT_MALLOC);
   while (src[i] != 0)
     {
       dest[i] = my_strdup(src[i]);
@@ -97,7 +98,8 @@ char	*calc(char **str, char *b)
   while (get_nb_op(str))
     {
       l_stack -= 1;
-      cpy = malloc(sizeof(char *) * (l_stack + 1));
+      if ((cpy = malloc(sizeof(char *) * (l_stack + 1))) == NULL)
+	exit(EXIT_MALLOC);
       cpy = copy(str, cpy, b);
       str = free_stack(str);
       str = copy_stack(str, cpy);

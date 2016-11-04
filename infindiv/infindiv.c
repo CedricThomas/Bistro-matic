@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Fri Oct 28 13:28:36 2016 Cédric Thomas
-** Last update Thu Nov  3 20:12:57 2016 Arthur Knoepflin
+** Last update Fri Nov  4 15:22:11 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
@@ -20,7 +20,8 @@ char	*shiftstr(char *str, int dec)
 
   i = 0;
   j = 0;
-  shifted = malloc(sizeof(char) * (my_strlen(str) + dec + 1));
+  if ((shifted = malloc(sizeof(char) * (my_strlen(str) + dec + 1))) == NULL)
+    exit(EXIT_MALLOC);
   while (i < my_strlen(str) + dec)
     {
       if (str[j] != '\0')
@@ -87,7 +88,7 @@ t_ci	infindiv(t_ci ci1, t_ci ci2)
   result = NULL;
   if (my_strcmp(ci2.n, "0") == 0)
     {
-      my_putstr(ERROR_MSG);
+      my_puterror(ERROR_MSG);
       exit(EXIT_OPS);
     }
   if ((ci1.s == 0 && ci2.s == 1) || (ci1.s == 1 && ci2.s == 0))

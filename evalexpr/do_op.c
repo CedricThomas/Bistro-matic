@@ -5,7 +5,7 @@
 ** Login   <arthur@epitech.net>
 **
 ** Started on  Tue Oct 25 22:43:58 2016 Arthur Knoepflin
-** Last update Thu Nov  3 17:53:17 2016 Arthur Knoepflin
+** Last update Fri Nov  4 15:13:40 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
@@ -51,13 +51,15 @@ char	*toc_alloc(int nb)
   char  *ret;
   if (nb < 0)
     {
-      ret = malloc(sizeof(char) * (size_int(nb) + 2));
+      if ((ret = malloc(sizeof(char) * (size_int(nb) + 2))) == NULL)
+	exit(EXIT_MALLOC);
       ret[0] = '-';
       nb *= (-1);
     }
   else
     {
-      ret = malloc(sizeof(char) * (size_int(nb) + 1));
+      if ((ret = malloc(sizeof(char) * (size_int(nb) + 1))) == NULL)
+	exit(EXIT_MALLOC);
     }
   return (ret);
 }

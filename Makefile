@@ -5,7 +5,7 @@
 ## Login   <cedric@epitech.net>
 ##
 ## Started on  Sat Oct 22 10:37:32 2016 Cédric Thomas
-## Last update Thu Nov  3 20:30:04 2016 Arthur Knoepflin
+## Last update Fri Nov  4 15:29:44 2016 Arthur Knoepflin
 ##
 
 SRC	=	infinadd/infinadd.c		\
@@ -23,11 +23,17 @@ SRC	=	infinadd/infinadd.c		\
 		evalexpr/in_to_rpn.c		\
 		evalexpr/calc.c			\
 		evalexpr/do_op.c		\
-		main.c				\
-		op_destructor.c			\
-		convert.c			\
+		evalexpr/convert.c		\
+		err_handle/check_base.c		\
+		err_handle/check_doubles.c	\
+		err_handle/error.c		\
+		err_handle/check_parent.c	\
+		err_handle/op_destructor.c	\
+		err_handle/check_blank.c	\
+		err_handle/check_expr.c		\
 		infinbase.c			\
-		module_bistro.c
+		module_bistro.c			\
+		main.c
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -39,7 +45,7 @@ LIB	=	my
 
 INCLUDE	=	-I./include/
 
-CFLAGS	+=	 $(INCLUDE)
+CFLAGS	+=	 $(INCLUDE) -g
 
 all: $(NAME)
 

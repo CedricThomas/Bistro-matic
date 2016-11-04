@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Fri Oct 28 13:28:36 2016 Cédric Thomas
-** Last update Thu Nov  3 16:37:33 2016 Arthur Knoepflin
+** Last update Fri Nov  4 13:48:34 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
@@ -40,7 +40,7 @@ t_ci	infinmod(t_ci ci1, t_ci ci2)
 
   if (my_strcmp(ci2.n, "0") == 0)
     {
-      my_putstr(ERROR_MSG);
+      my_puterror(ERROR_MSG);
       exit(EXIT_OPS);
     }
   result = NULL;

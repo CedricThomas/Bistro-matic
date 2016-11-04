@@ -5,11 +5,36 @@
 ** Login   <arthur@epitech.net>
 **
 ** Started on  Mon Oct 31 09:34:47 2016 Arthur Knoepflin
-** Last update Thu Nov  3 15:11:16 2016 Arthur Knoepflin
+** Last update Thu Nov  3 13:18:37 2016 Arthur Knoepflin
 */
+
 #include <stdlib.h>
 #include "bistro.h"
 #include "my.h"
+
+static char	*my_strndup(char *src, int index)
+{
+  char		*dest;
+  int		i;
+  int		j;
+
+  i = 0;
+  j = 0;
+  if (src == NULL || my_strlen(src) < index)
+    return (NULL);
+  dest = malloc(sizeof(char) * (my_strlen(src) + 1 - index));
+  while (src[i] != '\0')
+    {
+      if (i > index)
+	{
+	  dest[j] = src[i];
+	  j += 1;
+	}
+      i += 1;
+    }
+  dest[j] = '\0';
+  return (dest);
+}
 
 int	char_to_stru(t_ci *ci, char *nb)
 {
@@ -18,19 +43,19 @@ int	char_to_stru(t_ci *ci, char *nb)
   i = 0;
   if (nb[0] == '-')
     {
-      (*ci).n = nb + 1 + get_nl(nb + 1);
+      (*ci).n = my_strndup(nb, get_nl(nb + 1));
       (*ci).s = 1;
       (*ci).l = my_strlen((*ci).n);
     }
   else
     {
-      (*ci).n = nb + get_nl(nb);
+      (*ci).n = my_strndup(nb, get_nl(nb) - 1);
       (*ci).s = 0;
       (*ci).l = my_strlen((*ci).n);
     }
   while ((*ci).n[i] != '\0')
     {
-      if ((*ci).n[i], b >= '0' && (*ci).n[i], b <= '9')
+      if ((*ci).n[i] < '0' || (*ci).n[i] > '9')
 	return (1);
       i += 1;
     }

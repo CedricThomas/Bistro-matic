@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Wed Oct 26 14:44:54 2016 Cédric Thomas
-** Last update Thu Nov  3 18:00:28 2016 Arthur Knoepflin
+** Last update Fri Nov  4 15:11:30 2016 Arthur Knoepflin
 */
 
 #ifndef EVAL_EXPR_H_
@@ -158,8 +158,45 @@ int	t_ci_cmp(t_ci *, t_ci *);
 static int	op_get_nbop(char *, int);
 static int	op_get_parity(char *, int);
 static int	op_get_size(char *);
-static char	*del_plus(char *, int, int);
+static char	*del_plus(char *, int, int, int);
 char		*opsup(char *);
+
+/* check_parent.c */
+
+void	check_parent(char *);
+void	stop();
+void	check_syntax(char *, char *);
+
+/* check_base.c */
+
+int	check_spaces(char *);
+int	check_base_ops(char *, char *);
+int	check_ops_in_calc(char *, char *);
+
+/* check_blank */
+
+int	valide(char);
+void	check_blank(char *, char *);
+
+/* check_doubles.c */
+
+int	check_double_ops(char *);
+int	check_double_base(char *);
+
+/* check_expr.c */
+
+int		search_c(char *, char);
+static int	check_same(char *, char *);
+void		check_expr(char *, char *, char *);
+
+/* error.c */
+
+void	my_puterror(char *);
+int	my_is_op(char);
+int	check_parenthesis(char *);
+int	check_op(char *);
+int	check_errors(char *, char *, char *);
+
 
 #define	OP_OPEN_PARENT_IDX	0
 #define	OP_CLOSE_PARENT_IDX	1

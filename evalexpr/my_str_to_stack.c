@@ -5,7 +5,7 @@
 ** Login   <arthur@epitech.net>
 **
 ** Started on  Tue Oct 25 11:37:27 2016 Arthur Knoepflin
-** Last update Thu Nov  3 19:03:08 2016 Arthur Knoepflin
+** Last update Fri Nov  4 15:16:39 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
@@ -102,12 +102,12 @@ char	**str_to_stack(char *s, char *b)
 
   i = 0;
   if ((ret = malloc(sizeof(char *) * (nb_size(s, b) + 1))) == NULL)
-    return (NULL);
+    exit(EXIT_MALLOC);
   ret[nb_size(s, b)] = NULL;
   while (i < nb_size(s, b))
     {
       if ((ret[i] = malloc(sizeof(char) * ((size_child(s, i, b) + 1)))) == NULL)
-	return (NULL);
+	exit(EXIT_MALLOC);
       ret[i][size_child(s, i, b)] = '\0';
       j = 0;
       while (j < size_child(s, i, b))

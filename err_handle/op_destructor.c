@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Sat Oct 22 10:31:05 2016 Cédric Thomas
-** Last update Thu Nov  3 17:57:48 2016 Arthur Knoepflin
+** Last update Fri Nov  4 14:59:23 2016 Arthur Knoepflin
 */
 #include <stdlib.h>
 #include "bistro.h"
@@ -59,25 +59,25 @@ static int	op_get_size(char *str)
   return (size);
 }
 
-static char	*del_plus(char *str, int i, int j)
+static char	*del_plus(char *str, int i, int j, int size)
 {
   char		*epured;
-  int		size;
 
-  size = my_strlen(str);
   while (str[i] != 0)
     {
-      if (str[i] == '(' && str[i + 1] == '+')
+      if (str[i] == '(' && str[i + 1] == '+' || i == 0 && str[i] == '+')
 	size -= 1;
       i += 1;
     }
   i = 0;
   j = 0;
-  epured = malloc(sizeof(char) * (size + 1));
+  if ((epured = malloc(sizeof(char) * (size + 1))) == NULL)
+    exit(EXIT_MALLOC);
   my_memset(epured, '\0', size + 1);
   while (str[i] != 0)
     {
-      if (!(i > 0 && str[i] == '+' && str[i - 1] == '('))
+      if (!(i > 0 && str[i] == '+' &&
+	    str[i - 1] == '(' || i == 0 && str[i] == '+'))
 	{
 	  epured[j] = str[i];
 	  j += 1;
@@ -96,7 +96,8 @@ char	*opsup(char *str)
 
   i = 0;
   j = 0;
-  epured = malloc(sizeof(char) * (op_get_size(str) + 1));
+  if ((epured = malloc(sizeof(char) * (op_get_size(str) + 1))) == NULL)
+    exit(EXIT_MALLOC);
   epured[op_get_size(str)] = '\0';
   while (str[i] != 0)
     {
@@ -113,6 +114,6 @@ char	*opsup(char *str)
       j += 1;
       i += 1;
     }
-  epured = del_plus(epured, 0, 0);
+  epured = del_plus(epured, 0, 0, my_strlen(epured));
   return (epured);
 }

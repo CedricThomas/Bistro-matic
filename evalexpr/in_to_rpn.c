@@ -5,7 +5,7 @@
 ** Login   <arthur@epitech.net>
 **
 ** Started on  Tue Oct 25 10:51:56 2016 Arthur Knoepflin
-** Last update Thu Nov  3 14:18:45 2016 Arthur Knoepflin
+** Last update Fri Nov  4 15:15:05 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
@@ -26,7 +26,7 @@ char	**set_pile(char **in, char *b)
       i[0] += 1;
     }
   if ((pile = malloc(sizeof(char *) * (i[1] + 1))) == NULL)
-    return (NULL);
+    exit(EXIT_MALLOC);
   i[0] = 0;
   while (i[0] < i[1])
     {
@@ -51,7 +51,7 @@ char	**set_out(char **in)
       i[0] += 1;
     }
   if ((out = malloc(sizeof(char *) * (i[1] + 1))) == NULL)
-    return (NULL);
+    exit(EXIT_MALLOC);
   i[0] = 0;
   while (i[0] < i[1])
     {

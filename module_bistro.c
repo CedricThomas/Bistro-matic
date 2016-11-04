@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Mon Oct 24 18:25:52 2016 Cédric Thomas
-** Last update Wed Nov  2 22:39:26 2016 Arthur Knoepflin
+** Last update Fri Nov  4 15:26:40 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
@@ -72,7 +72,7 @@ char	*add_retenu(int retenu, char *nb, int sign, char mod)
   i = sign + retenu;
   sum = retenu + sign + my_strlen(nb);
   if ((result = malloc(sizeof(char) * (sum + 1))) == NULL)
-    return (NULL);
+    exit(EXIT_MALLOC);
   if (sign != 0)
     result[0] = '-';
   if (retenu != 0)

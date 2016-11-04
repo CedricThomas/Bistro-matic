@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Fri Oct 28 10:46:39 2016 Cédric Thomas
-** Last update Thu Nov  3 09:26:19 2016 Arthur Knoepflin
+** Last update Fri Nov  4 15:12:43 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
@@ -34,7 +34,8 @@ char	*change_sign(char *src)
   int	i;
   int	j;
 
-  dest = malloc(sizeof(char) * (my_strlen(src) + 1 + get_sign(src)));
+  if ((dest = malloc(sizeof(char) * (stl(src) + 1 + get_sign(src)))) == NULL)
+    exit(EXIT_MALLOC);
   i = 0;
   j = 0;
   while (src[i] != '\0')
@@ -60,7 +61,8 @@ char	*get_oper_norm()
 {
   char	*oper;
 
-  oper = malloc(sizeof(char) * (8));
+  if ((oper = malloc(sizeof(char) * (8))) == NULL)
+    exit(EXIT_MALLOC);
   oper[0] = '(';
   oper[1] = ')';
   oper[2] = '+';
@@ -94,7 +96,8 @@ char	*change_op(char *str, char *op)
 
   i = 0;
   oper = get_oper_norm();
-  ret = malloc(sizeof(char) * (my_strlen(str) + 1));
+  if ((ret = malloc(sizeof(char) * (my_strlen(str) + 1))) == NULL)
+    exit(EXIT_MALLOC);
   ret[my_strlen(str)] = '\0';
   while (str[i])
     {

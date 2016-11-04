@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Tue Oct 25 13:55:24 2016 Cédric Thomas
-** Last update Wed Nov  2 21:58:10 2016 Arthur Knoepflin
+** Last update Fri Nov  4 15:15:42 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
@@ -37,7 +37,7 @@ char	*my_epurstr(char *str)
       i[0] += 1;
     }
   if ((epured = malloc(sizeof(char) * (i[1] + 2))) == NULL)
-    return (NULL);
+    exit(EXIT_MALLOC);
   int_memset(i, 2);
   while (str[i[0]] != '\0')
     {
