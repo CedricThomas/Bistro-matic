@@ -2,10 +2,10 @@
 ** main.c for main.c in /home/cedric/delivery/ex
 **
 ** Made by Cédric Thomas
-** Login   <cedric.thomas@epitech.net>
+** Login   <cedric@epitech.net>
 **
 ** Started on  Sat Oct 22 10:31:05 2016 Cédric Thomas
-** Last update Sun Nov  6 19:46:23 2016 Cebrail Aktas
+** Last update Sun Nov  6 22:06:08 2016 Cédric Thomas
 */
 
 #include <unistd.h>
@@ -29,7 +29,7 @@ static char	*get_expr(unsigned int size)
   if (size <= 0)
     {
       my_puterror(SYNTAX_ERROR_MSG);
-      exit(EXIT_SIZE_NEG);
+      exit (EXIT_SIZE_NEG);
     }
   if ((expr = malloc(size + 1)) == NULL)
     exit(EXIT_MALLOC);
@@ -66,10 +66,10 @@ static void	print_help()
   my_putstr("\tsize_read  number of characters to be read\n");
 }
 
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
   char		*expr;
-  char		*rst;
+  char    *rst;
   unsigned int	size;
 
   if (ac == 2 && my_strcmp(av[1], "-h") == 0)

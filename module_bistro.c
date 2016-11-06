@@ -2,10 +2,10 @@
 ** module_bistro.c for bistro in /home/cedric/delivery/CPool_infinadd
 **
 ** Made by Cédric Thomas
-** Login   <cedric.thomas@epitech.net>
+** Login   <cedric@epitech.net>
 **
 ** Started on  Mon Oct 24 18:25:52 2016 Cédric Thomas
-** Last update Sun Nov  6 19:46:37 2016 Cebrail Aktas
+** Last update Fri Nov  4 15:26:40 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>

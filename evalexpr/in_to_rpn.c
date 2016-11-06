@@ -2,10 +2,10 @@
 ** g_s_s.c for g_s_s in /home/arthur/delivery/CPool_BS_EvalExpr/Arthur
 **
 ** Made by Arthur Knoepflin
-** Login   <arthur.knoepflin@epitech.net>
+** Login   <arthur@epitech.net>
 **
 ** Started on  Tue Oct 25 10:51:56 2016 Arthur Knoepflin
-** Last update Sun Nov  6 19:48:07 2016 Cebrail Aktas
+** Last update Fri Nov  4 15:15:05 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>

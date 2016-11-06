@@ -2,10 +2,10 @@
 ## Makefile for Makefile in /home/cedric/lib
 ##
 ## Made by Cédric Thomas
-## Login   <cedric.thomas@epitech.net>
+## Login   <cedric@epitech.net>
 ##
 ## Started on  Sat Oct 22 10:37:32 2016 Cédric Thomas
-## Last update Sun Nov  6 19:46:33 2016 Cebrail Aktas
+## Last update Sun Nov  6 21:44:48 2016 Cédric Thomas
 ##
 
 SRC	=	infinadd/infinadd.c		\
@@ -45,13 +45,12 @@ LIB	=	my
 
 INCLUDE	=	-I./include/
 
-CFLAGS	+=	 $(INCLUDE) -g -ansi -pedantic
+CFLAGS	+=	 $(INCLUDE)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	gcc -o $(NAME) $(OBJ) -L$(LIB_F) -l$(LIB)
-
 clean:
 	rm -rf $(OBJ)
 

@@ -2,10 +2,10 @@
 ** my_epurstr.c for my_epurstr in /home/cedric/delivery/epurstr
 **
 ** Made by Cédric Thomas
-** Login   <cedric.thomas@epitech.net>
+** Login   <cedric@epitech.net>
 **
 ** Started on  Tue Oct 25 13:55:24 2016 Cédric Thomas
-** Last update Sun Nov  6 19:48:18 2016 Cebrail Aktas
+** Last update Fri Nov  4 15:15:42 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>

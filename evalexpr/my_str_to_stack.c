@@ -2,10 +2,10 @@
 ** my_str_to_stack.c for str_to_stack in /home/arthur/delivery/CPool_BS_EvalExpr
 **
 ** Made by Arthur Knoepflin
-** Login   <arthur.knoepflin@epitech.net>
+** Login   <arthur@epitech.net>
 **
 ** Started on  Tue Oct 25 11:37:27 2016 Arthur Knoepflin
-** Last update Sun Nov  6 19:48:24 2016 Cebrail Aktas
+** Last update Sun Nov  6 21:25:22 2016 Cédric Thomas
 */
 
 #include <stdlib.h>
@@ -106,7 +106,8 @@ char	**str_to_stack(char *s, char *b)
   ret[nb_size(s, b)] = NULL;
   while (i < nb_size(s, b))
     {
-      if ((ret[i] = malloc(sizeof(char) * ((size_child(s, i, b) + 1)))) == NULL)
+      ret[i] = malloc(sizeof(char) * ((size_child(s, i, b) + 1)));
+      if (ret == NULL)
 	exit(EXIT_MALLOC);
       ret[i][size_child(s, i, b)] = '\0';
       j = 0;

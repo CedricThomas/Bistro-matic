@@ -2,14 +2,14 @@
 ** evalexpr.h for evalexpr.h in /home/cedric/CPool_EvalExpr
 **
 ** Made by Cédric Thomas
-** Login   <cedric.thomas@epitech.net>
+** Login   <cedric.thomas@epitech.eu>
 **
 ** Started on  Wed Oct 26 14:44:54 2016 Cédric Thomas
-** Last update Sun Nov  6 19:47:19 2016 Cebrail Aktas
+** Last update Sun Nov  6 22:07:40 2016 Cédric Thomas
 */
 
-#ifndef EVAL_EXPR_H_
-# define EVAL_EXPR_H_
+#ifndef BISTRO_H_
+# define BISTRO_H_
 
 typedef	struct	s_char_to_int
 {
@@ -28,7 +28,7 @@ int		is_opera(char, char *);
 char		*change_op(char *, char *);
 
 /*
-my_str_to_stack.c
+** my_str_to_stack.c
 */
 int		is_operator(char);
 int		nb_size(char *, char *);
@@ -52,7 +52,6 @@ char		*my_epurstr(char *);
 /*
 ** module_stack.c
 */
-
 int		is_op(char *);
 void		transfert_stack(char **, char **);
 void		swap(char *, char **, char **, int *);
@@ -111,6 +110,7 @@ int		is_number(char, char *);
 int		get_nl(char *);
 char		*add_retenu(int, char *, int, char);
 t_ci		stru_dup(t_ci *stru);
+int		t_ci_cmp(t_ci *, t_ci *);
 
 /*
 ** evalexpr/convert.c
@@ -133,7 +133,6 @@ void		trifree(t_ci *, t_ci *, t_ci *);
 */
 static char	*my_strndup(char *, int);
 int		char_to_stru(t_ci *, char *);
-int		t_ci_cmp(t_ci *, t_ci *);
 
 /*
 ** infin_add.c
@@ -152,7 +151,6 @@ t_ci		infinsub(t_ci, t_ci);
 /*
 ** infin_mul.c
 */
-
 int		stl(char *);
 void		clear_str(t_ci *);
 void		calc_neg(t_ci *, t_ci *, t_ci *);
@@ -162,7 +160,6 @@ t_ci		infinmul(t_ci, t_ci);
 /*
 ** infin_div.c
 */
-
 char		*shiftstr(char *, int);
 t_ci		get_addon(t_ci *, t_ci *);
 t_ci		div_mod(t_ci *, t_ci *);
@@ -171,12 +168,11 @@ t_ci		infindiv(t_ci, t_ci);
 /*
 ** infin_mod.c
 */
-
 t_ci		mod_mod(t_ci *, t_ci *);
 t_ci		infinmod(t_ci, t_ci);
 
 /*
-** op_destructor.c
+** op_destrcuctor.c
 */
 static int	op_get_nbop(char *, int);
 static int	op_get_parity(char *, int);
@@ -222,9 +218,6 @@ void		check_expr(char *, char *, char *);
 ** error.c
 */
 void		my_puterror(char *);
-int		my_is_op(char);
-int		check_parenthesis(char *);
-int		check_op(char *);
 int		check_errors(char *, char *, char *);
 
 #define	OP_OPEN_PARENT_IDX	0
@@ -246,4 +239,4 @@ int		check_errors(char *, char *, char *);
 #define	SYNTAX_ERROR_MSG	"syntax error"
 #define	ERROR_MSG		"error"
 
-#endif /* !EVAL_EXPR_H_ */
+#endif /* !BISTRO_H_ */

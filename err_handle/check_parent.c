@@ -1,11 +1,11 @@
 /*
 ** check_parent.c for check_parent in /home/arthur/c/bistro eval expr
-**
+** 
 ** Made by Arthur Knoepflin
-** Login   <arthur.knoepflin@epitech.net>
-**
+** Login   <arthur@epitech.net>
+** 
 ** Started on  Thu Nov  3 20:53:59 2016 Arthur Knoepflin
-** Last update Sun Nov  6 19:49:31 2016 Cebrail Aktas
+** Last update Sun Nov  6 21:22:27 2016 Arthur Knoepflin
 */
 #include <stdlib.h>
 #include "bistro.h"
@@ -38,6 +38,23 @@ void	stop()
   exit(EXIT_OPS);
 }
 
+void	one_number(char *str, char *base)
+{
+  int	i;
+  int	nb;
+
+  i = 0;
+  nb = 0;
+  while (str[i])
+    {
+      if (is_number(str[i], base))
+	nb += 1;
+      i += 1;
+    }
+  if (nb == 0)
+    stop ();
+}
+
 void	treat_op(char *str, int *i)
 {
   if (search_c("*/%", str[*i]))
@@ -61,15 +78,13 @@ void	treat_op(char *str, int *i)
 void	check_syntax(char *str, char *base)
 {
   int	i;
-  int	nb;
 
   i = 0;
-  nb = 0;
+  one_number(str, base);
   while (str[i])
     {
       if (is_number(str[i], base))
 	{
-	  nb += 1;
 	  while (is_number(str[i], base))
 	    i += 1;
 	  if (i != my_strlen(str) && !search_c("+-*/%)\n", str[i]))
@@ -82,6 +97,4 @@ void	check_syntax(char *str, char *base)
       if (i <= my_strlen(str) - 1)
 	i += 1;
     }
-  if (nb == 0)
-    stop();
 }

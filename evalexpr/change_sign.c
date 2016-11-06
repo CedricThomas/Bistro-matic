@@ -2,10 +2,10 @@
 ** change_sign.c for change_sign in /home/cedric/CPool_evalexpr
 **
 ** Made by Cédric Thomas
-** Login   <cedric.thomas@epitech.net>
+** Login   <cedric@epitech.net>
 **
 ** Started on  Fri Oct 28 10:46:39 2016 Cédric Thomas
-** Last update Sun Nov  6 19:47:29 2016 Cebrail Aktas
+** Last update Fri Nov  4 15:12:43 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>

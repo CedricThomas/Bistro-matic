@@ -2,10 +2,10 @@
 ** module_operateur.c for mod_op in /home/cedric/CPool_EvalExpr
 **
 ** Made by Cédric Thomas
-** Login   <cedric.thomas@epitech.net>
+** Login   <cedric@epitech.net>
 **
 ** Started on  Tue Oct 25 18:01:49 2016 Cédric Thomas
-** Last update Sun Nov  6 19:48:12 2016 Cebrail Aktas
+** Last update Wed Nov  2 21:58:00 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
