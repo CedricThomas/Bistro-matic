@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Sat Oct 22 10:31:05 2016 Cédric Thomas
-** Last update Sun Nov  6 22:03:09 2016 Cédric Thomas
+** Last update Sun Nov  6 23:26:36 2016 Arthur Knoepflin
 */
 #include <stdlib.h>
 #include "bistro.h"
@@ -36,10 +36,10 @@ char	*eval_expr(char *str, char *op, char *b)
       my_puterror(ERROR_MSG);
       exit(EXIT_USAGE);
     }
+  check_expr(b, op, epured);
   epured = change_op(str, op);
   check_blank(epured, b);
   check_parent(epured);
-  check_expr(b, op, epured);
   epured = change_sign(opsup(my_epurstr(epured)));
   epured = opsup(epured);
   check_syntax(epured, b);

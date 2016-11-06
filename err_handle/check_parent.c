@@ -5,7 +5,7 @@
 ** Login   <arthur@epitech.net>
 ** 
 ** Started on  Thu Nov  3 20:53:59 2016 Arthur Knoepflin
-** Last update Sun Nov  6 21:22:27 2016 Arthur Knoepflin
+** Last update Sun Nov  6 23:02:58 2016 Arthur Knoepflin
 */
 #include <stdlib.h>
 #include "bistro.h"
