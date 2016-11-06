@@ -2,10 +2,10 @@
 ** main.c for main.c in /home/cedric/delivery/ex
 **
 ** Made by Cédric Thomas
-** Login   <cedric@epitech.net>
+** Login   <cedric.thomas@epitech.net>
 **
 ** Started on  Sat Oct 22 10:31:05 2016 Cédric Thomas
-** Last update Sun Nov  6 16:47:17 2016 Cebrail Aktas
+** Last update Sun Nov  6 19:47:57 2016 Cebrail Aktas
 */
 #include <stdlib.h>
 #include "bistro.h"

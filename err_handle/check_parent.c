@@ -1,11 +1,11 @@
 /*
 ** check_parent.c for check_parent in /home/arthur/c/bistro eval expr
-** 
+**
 ** Made by Arthur Knoepflin
-** Login   <arthur@epitech.net>
-** 
+** Login   <arthur.knoepflin@epitech.net>
+**
 ** Started on  Thu Nov  3 20:53:59 2016 Arthur Knoepflin
-** Last update Sun Nov  6 12:16:02 2016 Arthur Knoepflin
+** Last update Sun Nov  6 19:49:31 2016 Cebrail Aktas
 */
 #include <stdlib.h>
 #include "bistro.h"

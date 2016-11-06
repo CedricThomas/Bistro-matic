@@ -2,10 +2,10 @@
 ** main.c for main.c in /home/cedric/delivery/ex
 **
 ** Made by Cédric Thomas
-** Login   <cedric@epitech.net>
+** Login   <cedric.thomas@epitech.net>
 **
 ** Started on  Sat Oct 22 10:31:05 2016 Cédric Thomas
-** Last update Sun Nov  6 19:25:35 2016 Cebrail Aktas
+** Last update Sun Nov  6 19:46:23 2016 Cebrail Aktas
 */
 
 #include <unistd.h>
@@ -66,10 +66,10 @@ static void	print_help()
   my_putstr("\tsize_read  number of characters to be read\n");
 }
 
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
   char		*expr;
-  char    *rst;
+  char		*rst;
   unsigned int	size;
 
   if (ac == 2 && my_strcmp(av[1], "-h") == 0)

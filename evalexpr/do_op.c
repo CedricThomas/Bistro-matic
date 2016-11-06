@@ -2,10 +2,10 @@
 ** do-op.c for do-op in /home/arthur/delivery/CPool_EvalExpr
 **
 ** Made by Arthur Knoepflin
-** Login   <arthur@epitech.net>
+** Login   <arthur.knoepflin@epitech.net>
 **
 ** Started on  Tue Oct 25 22:43:58 2016 Arthur Knoepflin
-** Last update Sun Nov  6 12:17:31 2016 Arthur Knoepflin
+** Last update Sun Nov  6 19:47:53 2016 Cebrail Aktas
 */
 
 #include <stdlib.h>

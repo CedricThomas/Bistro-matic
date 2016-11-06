@@ -2,10 +2,10 @@
 ** evalexpr.h for evalexpr.h in /home/cedric/CPool_EvalExpr
 **
 ** Made by Cédric Thomas
-** Login   <cedric@epitech.net>
+** Login   <cedric.thomas@epitech.net>
 **
 ** Started on  Wed Oct 26 14:44:54 2016 Cédric Thomas
-** Last update Sun Nov  6 16:31:56 2016 Cebrail Aktas
+** Last update Sun Nov  6 19:47:19 2016 Cebrail Aktas
 */
 
 #ifndef EVAL_EXPR_H_

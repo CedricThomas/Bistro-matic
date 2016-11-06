@@ -2,10 +2,10 @@
 ** convert.c for convert in /home/arthur/c/CPool_evalexpr/
 **
 ** Made by Arthur Knoepflin
-** Login   <arthur@epitech.net>
+** Login   <arthur.knoepflin@epitech.net>
 **
 ** Started on  Mon Oct 31 09:34:47 2016 Arthur Knoepflin
-** Last update Sat Nov  5 19:41:27 2016 Arthur Knoepflin
+** Last update Sun Nov  6 19:47:49 2016 Cebrail Aktas
 */
 
 #include <stdlib.h>

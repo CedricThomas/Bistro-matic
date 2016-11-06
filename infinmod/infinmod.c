@@ -2,10 +2,10 @@
 ** infindiv.c for infindiv in /home/cedric/delivery/CPool_bistro-matic/divinf
 **
 ** Made by Cédric Thomas
-** Login   <cedric@epitech.net>
+** Login   <cedric.thomas@epitech.net>
 **
 ** Started on  Fri Oct 28 13:28:36 2016 Cédric Thomas
-** Last update Fri Nov  4 13:24:15 2016 Cédric Thomas
+** Last update Sun Nov  6 19:46:48 2016 Cebrail Aktas
 */
 
 #include <stdlib.h>

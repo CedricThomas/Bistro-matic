@@ -1,11 +1,11 @@
 /*
 ** infinbase.c for infinbase.c in /home/cedric/convert_base
-** 
+**
 ** Made by Cédric Thomas
-** Login   <cedric@epitech.net>
-** 
+** Login   <cedric.thomas@epitech.net>
+**
 ** Started on  Wed Nov  2 09:32:01 2016 Cédric Thomas
-** Last update Thu Nov  3 15:00:34 2016 Arthur Knoepflin
+** Last update Sun Nov  6 19:46:28 2016 Cebrail Aktas
 */
 
 #include <stdlib.h>

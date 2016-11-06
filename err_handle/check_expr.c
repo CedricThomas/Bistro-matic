@@ -1,11 +1,11 @@
 /*
 ** check_expr.c for check epr in /home/cedric/delivery/module_bistro
-** 
+**
 ** Made by Cédric Thomas
-** Login   <cedric@epitech.net>
-** 
+** Login   <cedric.thomas@epitech.net>
+**
 ** Started on  Thu Nov  3 22:04:13 2016 Cédric Thomas
-** Last update Sun Nov  6 15:54:42 2016 Arthur Knoepflin
+** Last update Sun Nov  6 19:49:27 2016 Cebrail Aktas
 */
 #include <stdlib.h>
 #include "bistro.h"

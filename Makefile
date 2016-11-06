@@ -2,10 +2,10 @@
 ## Makefile for Makefile in /home/cedric/lib
 ##
 ## Made by Cédric Thomas
-## Login   <cedric@epitech.net>
+## Login   <cedric.thomas@epitech.net>
 ##
 ## Started on  Sat Oct 22 10:37:32 2016 Cédric Thomas
-## Last update Sun Nov  6 17:06:22 2016 Cebrail Aktas
+## Last update Sun Nov  6 19:46:33 2016 Cebrail Aktas
 ##
 
 SRC	=	infinadd/infinadd.c		\
@@ -54,7 +54,7 @@ $(NAME): $(OBJ)
 
 clean:
 	rm -rf $(OBJ)
-	
+
 fclean:	clean
 	rm -rf $(NAME)
 

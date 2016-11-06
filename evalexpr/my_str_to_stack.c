@@ -2,10 +2,10 @@
 ** my_str_to_stack.c for str_to_stack in /home/arthur/delivery/CPool_BS_EvalExpr
 **
 ** Made by Arthur Knoepflin
-** Login   <arthur@epitech.net>
+** Login   <arthur.knoepflin@epitech.net>
 **
 ** Started on  Tue Oct 25 11:37:27 2016 Arthur Knoepflin
-** Last update Fri Nov  4 15:16:39 2016 Arthur Knoepflin
+** Last update Sun Nov  6 19:48:24 2016 Cebrail Aktas
 */
 
 #include <stdlib.h>

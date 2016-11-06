@@ -1,11 +1,11 @@
 /*
 ** infindiv.c for infindiv in /home/cedric/delivery/CPool_bistro-matic/divinf
-** 
+**
 ** Made by Cédric Thomas
-** Login   <cedric@epitech.net>
-** 
+** Login   <cedric.thomas@epitech.net>
+**
 ** Started on  Fri Oct 28 13:28:36 2016 Cédric Thomas
-** Last update Fri Nov  4 13:23:17 2016 Cédric Thomas
+** Last update Sun Nov  6 19:46:42 2016 Cebrail Aktas
 */
 
 #include <stdlib.h>
@@ -20,12 +20,12 @@ char	*shiftstr(char *str, int dec)
 
   i = 0;
   j = 0;
-  shifted = malloc(sizeof(char) * (my_strlen(str) + dec + 1)); 
+  shifted = malloc(sizeof(char) * (my_strlen(str) + dec + 1));
   while (i < my_strlen(str) + dec)
     {
       if (str[j] != '\0')
 	{
-	  shifted[i] = str[j]; 
+	  shifted[i] = str[j];
 	  j += 1;
 	}
       else
@@ -33,7 +33,7 @@ char	*shiftstr(char *str, int dec)
       i += 1;
     }
   shifted[i] = '\0';
-  return (shifted);  
+  return (shifted);
 }
 
 t_ci	get_addon(t_ci *nb1, t_ci *nb2)

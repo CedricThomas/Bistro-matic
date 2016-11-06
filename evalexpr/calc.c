@@ -2,10 +2,10 @@
 ** calc.c for evalexpr in /home/cedric/CPool_EvalExpr
 **
 ** Made by Cédric Thomas
-** Login   <cedric@epitech.net>
+** Login   <cedric.thomas@epitech.net>
 **
 ** Started on  Tue Oct 25 20:41:56 2016 Cédric Thomas
-** Last update Fri Nov  4 15:20:12 2016 Arthur Knoepflin
+** Last update Sun Nov  6 19:47:23 2016 Cebrail Aktas
 */
 
 #include <stdlib.h>

@@ -1,11 +1,11 @@
 /*
 ** check_blank.c for blank check in /home/cedric/delivery/module_bistro
-** 
+**
 ** Made by Cédric Thomas
-** Login   <cedric@epitech.net>
-** 
+** Login   <cedric.thomas@epitech.net>
+**
 ** Started on  Thu Nov  3 20:52:12 2016 Cédric Thomas
-** Last update Fri Nov  4 14:51:14 2016 Arthur Knoepflin
+** Last update Sun Nov  6 19:49:19 2016 Cebrail Aktas
 */
 #include <stdlib.h>
 #include "bistro.h"

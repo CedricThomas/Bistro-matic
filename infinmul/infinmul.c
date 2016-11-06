@@ -2,10 +2,10 @@
 ** main.c for mul_inf in /home/arthur/c/mul_inf
 **
 ** Made by Arthur Knoepflin
-** Login   <arthur@epitech.net>
+** Login   <arthur.noepflin@epitech.net>
 **
 ** Started on  Fri Oct 28 15:24:48 2016 Arthur Knoepflin
-** Last update Fri Nov  4 13:19:54 2016 Cédric Thomas
+** Last update Sun Nov  6 19:47:01 2016 Cebrail Aktas
 */
 #include <stdlib.h>
 #include "bistro.h"
