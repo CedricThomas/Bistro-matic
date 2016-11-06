@@ -5,7 +5,7 @@
 ** Login   <arthur@epitech.net>
 **
 ** Started on  Fri Oct 28 15:24:48 2016 Arthur Knoepflin
-** Last update Fri Nov  4 15:23:36 2016 Arthur Knoepflin
+** Last update Fri Nov  4 13:19:54 2016 Cédric Thomas
 */
 #include <stdlib.h>
 #include "bistro.h"
@@ -30,7 +30,10 @@ void	clear_str(t_ci *str)
   while (str->n[start + len])
     len += 1;
   if ((ret = malloc(sizeof(char) * (len + 1))) == NULL)
-    exit(EXIT_MALLOC);
+    {
+      str->n = NULL;
+      return ;
+    }
   ret[len] = '\0';
   i = 0;
   while (i < len)
@@ -60,7 +63,7 @@ char	*infinmul_calc(t_ci *nb1, t_ci *nb2)
   i = my_strlen(nb1->n) - 1;
   j = my_strlen(nb2->n) - 1;
   if ((ret = malloc(sizeof(char) * (nb1->l + nb2->l + 1))) == NULL)
-    exit(EXIT_MALLOC);
+    return (ret);
   my_memset(ret, '0', nb1->l + nb2->l);
   ret[nb1->l + nb2->l] = '\0';
   while (i >= 0)
@@ -89,5 +92,7 @@ t_ci	infinmul(t_ci nb1, t_ci nb2)
   ret.l = my_strlen(ret.n);
   clear_str(&ret);
   free(calc);
+  free(nb1.n);
+  free(nb2.n);
   return (ret);
 }

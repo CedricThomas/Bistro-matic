@@ -1,11 +1,11 @@
 /*
 ** infinsub.c for AddInf in /home/cedric/delivery/CPool_infinadd
-**
+** 
 ** Made by Cédric Thomas
 ** Login   <cedric@epitech.net>
-**
+** 
 ** Started on  Mon Oct 24 09:00:08 2016 Cédric Thomas
-** Last update Sun Nov  6 16:16:09 2016 Cebrail Aktas
+** Last update Tue Nov  1 20:31:08 2016 Cédric Thomas
 */
 
 #include <stdlib.h>
@@ -26,6 +26,7 @@ static void	check_sign(t_ci *ci1, t_ci *ci2, t_ci *res, int *bool)
       *res = infinadd(*ci2, *ci1);
     }
 }
+
 
 static char	*sub_mod(t_ci *a, t_ci *b, int sign)
 {
@@ -53,12 +54,6 @@ static char	*sub_mod(t_ci *a, t_ci *b, int sign)
   return (result);
 }
 
-void	free_stru_in(t_ci ci1, t_ci ci2)
-{
-  free(ci1.n);
-  free(ci2.n);
-}
-
 t_ci	infinsub(t_ci ci1, t_ci ci2)
 {
   char  *result;
@@ -82,6 +77,9 @@ t_ci	infinsub(t_ci ci1, t_ci ci2)
       char_to_stru(&res, result);
     }
   if (bool == 0)
-    free_stru_in(ci1, ci2);
+    {
+      free(ci1.n);
+      free(ci2.n);
+    }
   return (res);
 }

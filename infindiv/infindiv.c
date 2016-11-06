@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Fri Oct 28 13:28:36 2016 Cédric Thomas
-** Last update Fri Nov  4 15:22:11 2016 Arthur Knoepflin
+** Last update Fri Nov  4 13:23:17 2016 Cédric Thomas
 */
 
 #include <stdlib.h>
@@ -20,13 +20,12 @@ char	*shiftstr(char *str, int dec)
 
   i = 0;
   j = 0;
-  if ((shifted = malloc(sizeof(char) * (my_strlen(str) + dec + 1))) == NULL)
-    exit(EXIT_MALLOC);
+  shifted = malloc(sizeof(char) * (my_strlen(str) + dec + 1)); 
   while (i < my_strlen(str) + dec)
     {
       if (str[j] != '\0')
 	{
-	  shifted[i] = str[j];
+	  shifted[i] = str[j]; 
 	  j += 1;
 	}
       else
@@ -34,7 +33,7 @@ char	*shiftstr(char *str, int dec)
       i += 1;
     }
   shifted[i] = '\0';
-  return (shifted);
+  return (shifted);  
 }
 
 t_ci	get_addon(t_ci *nb1, t_ci *nb2)
@@ -56,6 +55,9 @@ t_ci	get_addon(t_ci *nb1, t_ci *nb2)
   c1 = int_toc(my_getnbr(dupa) / (my_getnbr(dupb)));
   dec = (nb1->l - my_strlen(dupa)) - (nb2->l - my_strlen(dupb));
   char_to_stru(&c, shiftstr(c1, dec));
+  free(dupa);
+  free(dupb);
+  free(c1);
   return (c);
 }
 
@@ -64,33 +66,27 @@ t_ci	div_mod(t_ci *nb1, t_ci *nb2)
   t_ci	result;
   t_ci	addon;
   t_ci	mul;
-  t_ci	dup2;
 
   char_to_stru(&result, my_strdup("0"));
   while (t_ci_cmp(nb1, nb2) >= 0)
     {
       addon = get_addon(nb1, nb2);
-      result = infinadd(stru_dup(&result), stru_dup(&addon));
-      dup2 = stru_dup(nb2);
+      result = infinadd(result, stru_dup(&addon));
       nb1->l = my_strlen(nb1->n);
-      mul = infinmul(dup2, addon);
-      *nb1 = infinsub(stru_dup(nb1), stru_dup(&mul));
+      mul = infinmul(stru_dup(nb2), addon);
+      *nb1 = infinsub(*nb1, stru_dup(&mul));
+      free(mul.n);
     }
+  free(nb1->n);
+  free(nb2->n);
   return (result);
 }
 
 t_ci	infindiv(t_ci ci1, t_ci ci2)
 {
   t_ci	res;
-  char	*result;
   int	sign;
 
-  result = NULL;
-  if (my_strcmp(ci2.n, "0") == 0)
-    {
-      my_puterror(ERROR_MSG);
-      exit(EXIT_OPS);
-    }
   if ((ci1.s == 0 && ci2.s == 1) || (ci1.s == 1 && ci2.s == 0))
     sign = 1;
   else

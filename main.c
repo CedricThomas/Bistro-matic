@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Sat Oct 22 10:31:05 2016 Cédric Thomas
-** Last update Sat Nov  5 19:27:58 2016 Arthur Knoepflin
+** Last update Sun Nov  6 19:25:35 2016 Cebrail Aktas
 */
 
 #include <unistd.h>
@@ -29,7 +29,7 @@ static char	*get_expr(unsigned int size)
   if (size <= 0)
     {
       my_puterror(SYNTAX_ERROR_MSG);
-      exit (EXIT_SIZE_NEG);
+      exit(EXIT_SIZE_NEG);
     }
   if ((expr = malloc(size + 1)) == NULL)
     exit(EXIT_MALLOC);
