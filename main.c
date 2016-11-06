@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Sat Oct 22 10:31:05 2016 Cédric Thomas
-** Last update Fri Nov  4 15:25:49 2016 Arthur Knoepflin
+** Last update Sun Nov  6 15:40:38 2016 Cebrail Aktas
 */
 
 #include <unistd.h>
@@ -91,6 +91,5 @@ int	main(int ac, char **av)
   check_errors(expr, av[1], av[2]);
   rst = eval_expr(expr, av[2], av[1]);
   my_putstr(rst);
-  my_putchar('\n');
   return (EXIT_SUCCESS);
 }
