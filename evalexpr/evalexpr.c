@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Sat Oct 22 10:31:05 2016 Cédric Thomas
-** Last update Sun Nov  6 12:16:06 2016 Arthur Knoepflin
+** Last update Sun Nov  6 16:47:17 2016 Cebrail Aktas
 */
 #include <stdlib.h>
 #include "bistro.h"
@@ -16,6 +16,7 @@ char	*eval_expr(char *str, char *op, char *b)
   char	*epured;
   char	*epured_2;
   char	**rpn;
+  char 	*res;
 
   epured = change_op(str, op);
   check_blank(epured, b);
@@ -27,5 +28,8 @@ char	*eval_expr(char *str, char *op, char *b)
   free(epured_2);
   rpn = in_to_rpn(str_to_stack(epured, b), b);
   free(epured);
-  return (calc(rpn, b));
+  res = calc(rpn, b);
+  if (res[0] == '-')
+    res[0] = op[3];
+  return (res);
 }
