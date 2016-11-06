@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Wed Oct 26 14:44:54 2016 Cédric Thomas
-** Last update Fri Nov  4 15:11:30 2016 Arthur Knoepflin
+** Last update Sat Nov  5 19:19:25 2016 Arthur Knoepflin
 */
 
 #ifndef EVAL_EXPR_H_
@@ -165,6 +165,7 @@ char		*opsup(char *);
 
 void	check_parent(char *);
 void	stop();
+void	treat_op(char *, int *);
 void	check_syntax(char *, char *);
 
 /* check_base.c */

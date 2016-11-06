@@ -5,7 +5,7 @@
 ** Login   <arthur@epitech.net>
 **
 ** Started on  Mon Oct 31 09:34:47 2016 Arthur Knoepflin
-** Last update Thu Nov  3 13:18:37 2016 Arthur Knoepflin
+** Last update Sat Nov  5 19:41:27 2016 Arthur Knoepflin
 */
 
 #include <stdlib.h>
@@ -22,7 +22,8 @@ static char	*my_strndup(char *src, int index)
   j = 0;
   if (src == NULL || my_strlen(src) < index)
     return (NULL);
-  dest = malloc(sizeof(char) * (my_strlen(src) + 1 - index));
+  if ((dest = malloc(sizeof(char) * (my_strlen(src) + 1 - index))) == NULL)
+    exit(EXIT_MALLOC);
   while (src[i] != '\0')
     {
       if (i > index)

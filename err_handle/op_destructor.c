@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 ** 
 ** Started on  Sat Oct 22 10:31:05 2016 Cédric Thomas
-** Last update Fri Nov  4 15:38:24 2016 Arthur Knoepflin
+** Last update Sun Nov  6 15:59:00 2016 Arthur Knoepflin
 */
 #include <stdlib.h>
 #include "bistro.h"
@@ -77,7 +77,7 @@ static char	*del_plus(char *str, int i, int j, int size)
   while (str[i] != 0)
     {
       if (!(i > 0 && str[i] == '+' &&
-	    str[i - 1] == '(' || i == 0 && str[i] == '+'))
+	    search_c("(*/%", str[i - 1]) || i == 0 && str[i] == '+'))
 	{
 	  epured[j] = str[i];
 	  j += 1;

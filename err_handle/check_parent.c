@@ -5,7 +5,7 @@
 ** Login   <arthur@epitech.net>
 ** 
 ** Started on  Thu Nov  3 20:53:59 2016 Arthur Knoepflin
-** Last update Fri Nov  4 14:38:34 2016 Arthur Knoepflin
+** Last update Sun Nov  6 12:16:02 2016 Arthur Knoepflin
 */
 #include <stdlib.h>
 #include "bistro.h"
@@ -38,15 +38,38 @@ void	stop()
   exit(EXIT_OPS);
 }
 
+void	treat_op(char *str, int *i)
+{
+  if (search_c("*/%", str[*i]))
+    if (*i == my_strlen(str) - 1 || str[*i + 1] == ')')
+      stop();
+  if (search_c("+-", str[*i]))
+    {
+      while (str[*i] && search_c("+-", str[*i]))
+	{
+	  *i += 1;
+	  if (*i == my_strlen(str) || search_c("*/%)\n", str[*i]))
+	    stop();
+	}
+    }
+  if (str[*i] == '(' && search_c(")*/%", str[*i + 1]))
+    stop();
+  if (str[*i] == ')' && str[*i + 1] == '(')
+    stop();
+}
+
 void	check_syntax(char *str, char *base)
 {
   int	i;
+  int	nb;
 
   i = 0;
+  nb = 0;
   while (str[i])
     {
       if (is_number(str[i], base))
 	{
+	  nb += 1;
 	  while (is_number(str[i], base))
 	    i += 1;
 	  if (i != my_strlen(str) && !search_c("+-*/%)\n", str[i]))
@@ -55,14 +78,10 @@ void	check_syntax(char *str, char *base)
       else if (str[i] == '*' || str[i] == '/' || str[i] == '%')
 	if (!(is_number(str[i + 1], base)) && str[i + 1] != '(')
 	  stop();
-      if (search_c("+-*/%", str[i]))
-	if (i == my_strlen(str) - 1 || str[i + 1] == ')')
-	  stop();
-      if (str[i] == '(' && search_c(")*/%", str[i + 1]))
-	stop();
-      if (str[i] == ')' && str[i + 1] == '(')
-	stop();
+      treat_op(str, &i);
       if (i <= my_strlen(str) - 1)
 	i += 1;
     }
+  if (nb == 0)
+    stop();
 }

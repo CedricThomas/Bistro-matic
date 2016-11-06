@@ -5,7 +5,7 @@
 ** Login   <cedric@epitech.net>
 **
 ** Started on  Sat Oct 22 10:31:05 2016 Cédric Thomas
-** Last update Fri Nov  4 14:54:01 2016 Arthur Knoepflin
+** Last update Sun Nov  6 12:16:06 2016 Arthur Knoepflin
 */
 #include <stdlib.h>
 #include "bistro.h"
