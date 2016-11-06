@@ -5,7 +5,7 @@
 ## Login   <cedric@epitech.net>
 ##
 ## Started on  Sat Oct 22 10:37:32 2016 Cédric Thomas
-## Last update Fri Nov  4 15:29:44 2016 Arthur Knoepflin
+## Last update Sun Nov  6 17:06:22 2016 Cebrail Aktas
 ##
 
 SRC	=	infinadd/infinadd.c		\
@@ -45,7 +45,7 @@ LIB	=	my
 
 INCLUDE	=	-I./include/
 
-CFLAGS	+=	 $(INCLUDE) -g
+CFLAGS	+=	 $(INCLUDE) -g -ansi -pedantic
 
 all: $(NAME)
 
@@ -54,7 +54,7 @@ $(NAME): $(OBJ)
 
 clean:
 	rm -rf $(OBJ)
-
+	
 fclean:	clean
 	rm -rf $(NAME)
 
